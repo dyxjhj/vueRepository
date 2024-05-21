@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 配合v-cloak使用 */
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h2>{{ msg }}</h2>
+        <h2>{{ msg.split("") }}</h2>
+        <h2>{{ msg.length>10 ? 1 : 0}}</h2>
+        <!-- 插值表达式中也可以调用methods中的函数 -->
+        <h2>{{ formData() }}</h2>
+
+        <!-- v-once指令 该标签只会渲染一次-->
+        <h2 v-once>{{ msg }}</h2>
+        <!-- 点击之后 h2在浏览器界面中渲染的值不会改变 但是msg确实改变了 -->
+        <button @click = "changeMsg">改变msg</button>
+
+        <!-- v-text指令 -->
+        <h2 >{{ msg }}</h2>
+        <h2 v-text="msg"></h2>
+
+        <!-- v-html指令 解析html标签 -->
+        <h2 >{{ content }}</h2>
+        <h2 v-html="content"></h2>
+        
+        <!-- v-pre 跳过元素和它的子元素的编译过程，显式原始的Mustache标签 -->
+        <!-- 显示{{ content }} -->
+        <h2 v-pre>{{ content }}</h2>  
+
+        <!-- v-cloak 等浏览器渲染完成之后再显示 -->
+        <h2 v-cloak>{{ count }}</h2>
+
+        <!-- v-memo指令 性能优化-->
+        
+
+
+    </div>
+    <!-- CDN引入 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.4.27/dist/vue.global.min.js"></script>
+
+    <script>
+        // React的开发模式 ：使用jsx 类似于js的一种语法
+        // 之后通过Babel将jsx编译成React。createElement函数调用
+        // vue也支持jsx的开发模式 但大多数情况下使用基于HTML的模板语法
+        // 模板中 允许开发者以声明式的方式将DOM和底层组件实例的数据绑定在一起
+        // 底层实现中 vue将模板编译成虚拟DOM渲染函数
+        // 模板语法
+        // Mustache双大括号语法 插值表达式
+        // 创建vue实例 
+        const app =  Vue.createApp({
+            data: function() {
+                return {
+                    msg: "hello world",
+                    content: '<span style="color: red; font-size: 20px;">hahahah</span>',
+                }
+            },
+            methods: {
+                formData: function() {
+                    return "2024-5-18"
+                },
+                changeMsg: function() {
+                    this.msg = "hello vue"
+                },
+            }
+        })
+
+        // 挂载app
+        app.mount("#app")
+        
+    </script>
+</body>
+</html>
+                                             

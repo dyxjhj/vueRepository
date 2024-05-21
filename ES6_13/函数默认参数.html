@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 注意：默认参数不会对null进行判断 会对undefined进行判断
+        // 有默认参数的形参尽量放在参数列表的靠后位置
+        // 有默认参数的形参，不会计算在length内 其之后的参数也不会计算在length之内
+        // 剩余参数放在默认参数的前面        
+        function fun(arg1 = "默认值", arg2 = "默认值") {
+            // 没有传参 为undefined
+            // 给参数设置默认值 
+            // 法一 
+            arg1 = arg1 ? arg1 : "默认值"
+            // 法二 
+            arg1 = arg1 || "默认值"
+
+            // 不严谨 传参为0 false 逻辑假的情况 
+            // 比较严谨的写法
+            arg1 = (arg1 === undefined || arg1 === null) ? "默认值" : arg1
+            // ES6之后新增的语法 ?? 等价于上面的写法
+            arg1 = arg1 ?? "默认值"
+
+            // 更加简便的写法 形参直接赋值
+            console.log(arg1 + arg2)
+        }
+        // 
+        fun(111, 222)
+        fun()
+        fun(0)
+        fun("")
+        fun(false)
+
+        // 默认参数解构
+        // 对象解构
+        // const obj = {name: "zhangsan"}
+        // const {name = "lisi", age = 18} = obj
+        // 函数的默认值是一个对象
+        // function fun1(obj = {name: "lisi", age: 18}) {
+        //     console.log(obj.name, obj.age)
+        // }
+        // 解构+默认值
+        function fun1({name, age} = {name: "lisi", age: 18}) {
+            console.log(name, age)
+        }
+        
+        function fun2({name = "lisi", age = 18} = {}) {
+            console.log(name, age)
+        }
+
+        // 箭头函数
+        // function定义的函数有两个原型
+        // 箭头函数没有显式原型 有自己的隐式原型
+        function fun3() {
+            //new fun3() -> f.__proto__ = fun3.prototype 
+            console.log(fun3.prototype) 
+            // 函数的隐式原型指向函数的显式原型 Function.prototype
+            console.log(fun3.__proto__)
+        }
+        var bar = () => {}
+        console.log(bar.__proto__ === Function.prototype)  //true
+        // 没有显式原型 不能作为构造函数 使用new来创建的对象
+        console.log(bar.prototype) //undefined
+        // var b = new bar()  报错
+        // 注意：箭头函数不绑定this,arguments,super参数
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        const name = "zhangsan"
+        const age = 18
+        // 字符串拼接 ES6模板字符串
+        const info = `my name is ${name}, my age is ${age}`
+        console.log(info) 
+        // 标签模板字符串 
+        function fun(...args) {
+            console.log("参数列表", args)
+        }
+        // fun("Jenny", 18, "female")
+        // ``也可以调用函数 其中的内容作为参数传入
+        // 使用标签模板字符串 在传入的时候插如其他变量
+        // 模板字符串被拆分
+        // 第一个元素是数组，是被模板字符串拆分的字符串组合
+        // 后面的元素是插入的每个变量
+        fun`my name is ${name}, my age is ${age}`
+
+        // 
+    </script>
+</body>
+</html>

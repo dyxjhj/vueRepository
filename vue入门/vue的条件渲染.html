@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="box"></div>
+        <!-- names数组不为空时渲染每一条数据 -->
+        <ul v-if="names.length > 0">
+            <li v-for="item in names">{{ item }}</li>
+        </ul>
+        <h2 v-else>names数组为空</h2>
+
+        <div v-if="Object.keys(obj1).length">
+            <h1>个人信息</h1>
+            <ul>
+                <li>{{ obj1.name }}</li>
+                <li>{{ obj1.age }}</li>
+            </ul>
+        </div>
+        <span v-else="obj1不存在"></span>
+
+        <div v-if="Object.keys(obj2).length">
+            <h1>个人信息</h1>
+            <ul>
+                <li>{{ obj2.name }}</li>
+                <li>{{ obj2.age }}</li>
+            </ul>
+        </div>
+        <span v-else="obj2不存在"></span>
+
+        <!-- v-if 惰性 当条件成立是渲染 条件不成立 DOM元素不存在 -->
+        <!-- vue3支持 template元素 不可见的包裹元素 相当于小程序的block 添加指令 -->
+        <template v-if="Object.keys(obj1).length">
+            <h1>个人信息</h1>
+            <ul>
+                <li>{{ obj1.name }}</li>
+                <li>{{ obj1.age }}</li>
+            </ul>
+        </template>
+
+        <!-- v-show  -->
+        <!-- 与v-if的区别 -->
+        <!-- 1.不支持template -->
+        <template v-show="Object.keys(obj1).length">
+            <h1>个人信息</h1>
+            <ul>
+                <li>{{ obj1.name }}</li>
+                <li>{{ obj1.age }}</li>
+            </ul>
+        </template>
+        <!-- 2.v-show的原理 display:none  v-if:删除DOM元素 -->
+        <div v-show="Object.keys(obj1).length">
+            <h1>个人信息</h1>
+            <ul>
+                <li>{{ obj1.name }}</li>
+                <li>{{ obj1.age }}</li>
+            </ul>
+        </div>
+        <!-- 原生DOM在显示和隐藏之间频繁切换 v-show 避免回流和重绘 -->
+        
+
+        
+    </div>
+    <!-- CDN引入 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.4.27/dist/vue.global.min.js"></script>
+
+    <script>
+        // 创建vue实例 
+        const app =  Vue.createApp({
+            data: function() {
+                return {
+                    msg: "hello world",
+                    names: ["zhang", "tian", "sun", "li"],
+                    obj1: {
+                        name: "zhang",
+                        age: 19,
+                    },
+                    obj2: {},
+                }
+            },
+            methods: {
+
+            }
+        })
+
+        // 挂载app
+        app.mount("#app")
+        
+    </script>
+</body>
+</html>
+                                             

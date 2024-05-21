@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <span class="card">
+
+    </span>
+    <script>
+
+        // 填充字符串 padStart
+        // 应用场景1： 时间格式化
+        const m = "5".padStart(2, "0")
+        const s = "6".padStart(2, "0")
+        console.log(`${m}:${s}`)
+
+        // 应用场景2：敏感数据格式化
+        let cardNumber = "657214200211101536"
+        let spliceNumber = cardNumber.slice(-4)
+        console.log(spliceNumber)
+        cardNumber = spliceNumber.padStart(cardNumber.length, "*")
+        let cardE1 = document.querySelector(".card")
+        cardE1.textContent = cardNumber
+
+        // Trailing Commas 尾部逗号
+        // 允许函数在定义或调用时多加一个逗号
+        function fun(arg1, arg2,) {   
+
+        }
+
+        // 
+        // Object.getOwnPropertyDescriptors
+        
+    </script>
+</body>
+</html>

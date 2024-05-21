@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // flat flatMap
+        // flat方法会按照一个指定的深度递归遍历数组，并将所有元素与遍历到的子数组中的元素合并为一个新数组返回
+        const arr = [10,20,[12,13,[100,200],14],30,40]
+        const newArr1 = arr.flat(1)
+        const newArr2 = arr.flat(2)
+        const newArr3 = arr.flat(3)
+
+        console.log(newArr1)
+        console.log(newArr2)
+        console.log(newArr3)
+
+        // flatMap 首先使用映射函数映射每个元素 然后将结果压缩成一个新数组
+        // 先进行map操作 再进行flat操作（深度为1）
+        const msg = [
+            "hello world",
+            "i am coming",
+            "welcome",
+        ]
+        // 分步骤
+        // const newMsg = msg.map(item => item.split(" "))
+        // console.log(newMsg)
+        // const finalMsg = newMsg.flat(1)
+        // console.log(finalMsg)
+
+        // flatMap
+        const finalMsg = msg.flatMap(item => item.split(" "))
+        console.log(finalMsg)
+
+
+        // Object.entries 将一个对象转换成entries
+        // Object.fromEntries 将一个entries转换成对象 ES10
+
+        const obj = {
+            name: "zhang",
+            age: 18,
+        }
+        const entries = Object.entries(obj)
+        console.log(entries)
+        const obj1 = Object.fromEntries(entries)
+        console.log(obj1)
+
+        // 使用场景
+        // 搜索字符串
+        const searchString = "?name=zhang&age=18"
+        // URLSearchParams params
+        const params = new URLSearchParams(searchString)
+        console.log(params)
+        console.log(params.entries)
+
+        console.log(params.get("name"))
+        console.log(params.get("age"))
+
+        for(const item in params.entries()) {
+            console.log(item)
+        }
+
+        const paramObj = Object.fromEntries(params)
+        console.log(paramObj)
+
+
+
+        // trim trimStart trimEnd
+        // 去除首尾字符串
+
+
+        
+
+
+
+        
+        
+
+    </script>
+</body>
+</html>

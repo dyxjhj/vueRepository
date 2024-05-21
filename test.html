@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- VSCode代码片段 -->
+<!-- https://snippet-generator.app/ -->
+<body>
+    <div id="app">
+
+    </div>
+    <!-- CDN引入 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.4.27/dist/vue.global.min.js"></script>
+
+    <script>
+        // 创建vue实例 
+        const app =  Vue.createApp({
+            data: function() {
+                return {
+                    msg: "hello world",
+                    
+                }
+            },
+            methods: {
+
+            }
+        })
+
+        // 挂载app
+        app.mount("#app")
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        
+
+        <!-- 组件的使用 -->
+        <myCom></myCom>
+        <my-component></my-component>
+        <my-component></my-component>
+        <my-component></my-component>
+
+
+    </div>
+    <!-- CDN引入 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.4.27/dist/vue.global.min.js"></script>
+
+    <script>
+        // 根组件
+        const App = {
+            data: function() {
+                return {
+                    msg: "hello world",
+                    name: "lxj",
+                }
+            },
+            methods: {
+
+            }
+        }
+        // 组件
+        // const myComponent = {
+        //     template:`
+        //         <h2>{{ name }}</h2>
+        //         <h2>{{ msg }}</h2>
+        //     `
+        // }
+
+        // 创建vue实例 
+        const app = Vue.createApp(App)
+
+        // 注册组件的方式
+        // 组件起名方式 
+        // 1.kebab-case 短横线分隔符
+        // 2.pascalCase 驼峰标识符 
+        // html文件中不区分大小写
+        // 全局组件 注册成功后可以在任意的template中使用
+        // 使用全局的app注册
+        //  app.component(组件名，组件实例)
+
+        // 可以提取template 使用类选择器
+        app.component("my-component", {
+            template:`
+                <h2>{{ name }}</h2>
+                <h2>{{ msg }}</h2>
+            `,
+            data: function() {
+                return {
+                    msg: "hello world",
+                    name: "lxj",
+                }
+            },
+            
+        })
+        // 局部组件
+        // 使用components选项注册组件
+        // components: {
+        //         myComponent: {
+        //             template:`
+        //                 <h2>{{ name }}</h2>
+        //                 <h2>{{ msg }}</h2>
+        //             `, 
+        //         }
+        //     }
+
+
+        // 挂载app
+        app.mount("#app")
+
+        // vue脚手架安装
+        // 命令行 npm install @vue/cli -g 全局安装
+        // #最新地址 淘宝 NPM 镜像站新域名!
+        // npm config set registry https://registry.npmmirror.com
+
+
+        
+    </script>
+</body>
+</html>
+                                             

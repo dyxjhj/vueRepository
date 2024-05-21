@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <span>{{ msg }}</span>
+        <h1>计数器：{{ count }}</h1>
+        <button @click = "add">加1</button>
+        <button @click = "reduce">减1</button>
+
+    </div>
+    <!-- CDN引入 -->
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.4.27/vue.cjs.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.4.27/dist/vue.global.min.js"></script>
+    <!-- 本地引入 -->
+    <!-- <script src="../lib/vue.js"></script> -->
+    <script>
+        // 创建vue实例 
+        const app =  Vue.createApp({
+            // 模板属性
+            // template: `<h1>hello</h1>`,
+            // data属性 vue2 可以传入一个对象
+            // data () {
+            //     return {
+            //         msg: "hello world",
+            //     }
+            // },
+            // vue3 必须传入一个函数 否则浏览器报错
+            data: function() {
+                console.log("----------")
+                // 监听对象的变化
+                // 方法1：
+                // Object.defineProperty(info, "name", {
+                //     set:
+                //     get:
+                // })
+                // 方法2：
+                // new proxy(info, {
+                //     set:
+                //     get:
+                // })
+                // 返回一个JS对象 
+                // data中返回的对象会被vue的响应式系统劫持，之后对该对象的修改或者访问都会在劫持中被处理
+                // 模板中使用变量时，vue找到对象中对应的数据
+                // 并且vue会对该变量进行劫持 监听数据的变化
+                return {
+                    msg: "hello world",
+                    count: 0,
+                }
+            },
+            methods: {
+                add: function() {
+                    this.count++
+                },
+                reduce: function() {
+                    this.count--
+                }  
+            }
+        })
+
+        // 挂载app
+        app.mount("#app")
+
+        // 命令式编程 声明式编程
+        // MVC MVVM架构
+        
+    </script>
+</body>
+</html>

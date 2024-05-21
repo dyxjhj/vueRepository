@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- v-bind指令 动态绑定属性 -->
+        <!-- 比如a标签的href属性 img的src属性 -->
+        <img v-bind:src="imgUrl" alt="">
+        <a v-bind:href="webUrl">跳转到百度</a>
+
+        <!-- v-bind语法糖 -->
+        <a :href="webUrl">跳转到百度</a>
+
+        <!-- 基本绑定class -->
+        <!-- <h2 :class="red">h2标签</h2> -->
+        <!-- 动态绑定class -->
+        <button :class="isActive ? 'active' : ''" @click="btnClick">按钮</button>
+
+        <!-- 支持对象语法 属性+值 值只能是boolean类型  -->
+        <button :class="{active: isActive}" @click="btnClick">按钮</button>
+        <!-- 对象语法支持多个键值对 -->
+        <button :class="{active: isActive, red: true}" @click="btnClick">按钮</button>
+        <!-- 动态绑定的class和普通绑定的class可以同时存在 -->
+        <button class="green" :class="{active: isActive}" @click="btnClick">按钮</button>
+
+        <!-- 支持数组语法 -->
+        <h2 :class="['red', 'green']">class绑定</h2>
+        <h2 :class="['red', className]">class绑定</h2>
+        <!-- 数组语法+对象语法 -->
+        <h2 :class="['red', {active: isActive}]">class绑定</h2>
+
+
+        <!-- style属性绑定 -->
+        <!--  -->
+        <h2 style="color: skyblue;font-size: 20px;">style绑定</h2>
+        <!-- JSON对象 注意写法-->
+        <h2 :style="{color: fontColor,'font-size': fontSize,}">style绑定</h2>
+
+        <!-- 属性名不确定 -->
+        <h2 :[propName]="active">属性名不确定</h2>
+
+        <!-- v-bind绑定一个对象 -->
+        <h2 v-bind="obj"></h2>
+
+
+    </div>
+    <!-- CDN引入 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.4.27/dist/vue.global.min.js"></script>
+
+    <script>
+        // 创建vue实例 
+        const app =  Vue.createApp({
+            data: function() {
+                return {
+                    msg: "hello world",
+                    imgUrl: "https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BB1mB4Tv.img?w=534&h=307&m=6",
+                    webUrl: "https://www.baidu.com/",
+                    class: "red green",
+                    isActive: false,
+                    className: "active",
+                    fontColor: 'green',
+                    fontSize: "40px",
+                    propName: "class",
+                    obj: { name: "张三", age: 18},
+                }
+            },
+            methods: {
+                btnClick: function() {
+                    this.isActive = !this.isActive
+                }
+            }
+        })
+
+        // 挂载app
+        app.mount("#app")
+        
+    </script>
+</body>
+</html>
+                                             

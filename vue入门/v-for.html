@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div class="list1">
+            <ul>
+                <li v-for="item in names">{{ item }}</li>
+            </ul>
+        </div>
+        <div class="list2">
+            <ul>
+                <li v-for="(item,index) in names">{{ index + 1 }}.{{ item }}</li>
+            </ul>
+        </div>
+        <!-- 复杂数据 -->
+        <div class="list3">
+            <div v-for="item in products">
+                <h3>{{ item.name }}</h3>
+                <span>价格：{{ item.price }}</span>
+            </div>
+        </div>
+
+        <!-- 数组更新检测 -->
+        <div class="list">
+            <ul>
+                <li v-for="item in names">{{ item }}</li>
+            </ul>
+        </div>   
+        <button @click="change">更新数组</button>     
+
+        <!-- v-for中的key属性 -->
+        <!-- key属性主要用在vue的虚拟DOM算法 在新旧nodes对比时辨别Vnodes -->
+        <!-- VNode Virtual Node 虚拟节点  -->
+        <!-- 组件/元素在vue中表现出来就是一个个的VNode -->
+        <!-- VNode的本质是一个JS对象 -->
+        <!-- template ===> VNode ===>真实DOM -->
+        <!-- 虚拟DOM VNode Tree -->
+        <!-- 更好的跨平台性 -->
+        <!-- 1.虚拟DOM ===> 真实DOM 渲染在浏览器上 -->
+        <!-- 2.虚拟DOM ===> 移动端的控件 -->
+        <!-- 3.虚拟DOM ===> 桌面端的控件 -->
+        <!-- 4.虚拟DOM ===> VR设备 -->
+
+        <!-- 渲染过程 -->
+        <!-- 有key 尽可能多的复用原来的VNode -->
+
+
+        <div class="list">
+            <ul>
+                <li v-for="(item,index) in names" :key="index">{{ item }}</li>
+            </ul>
+        </div> 
+        <div class="list" >
+            <div v-for="item in products" :key="item.id">
+                <h3>{{ item.name }}</h3>
+                <span>价格：{{ item.price }}</span>
+            </div>
+        </div>
+
+        
+
+    </div>
+
+
+    <!-- CDN引入 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.4.27/dist/vue.global.min.js"></script>
+
+    <script>
+        // 创建vue实例 
+        const app =  Vue.createApp({
+            data: function() {
+                return {
+                    msg: "hello world",
+                    names: ["zhang", "tian", "sun", "li"],
+                    products: [
+                        {id:100, name:"棒棒糖1", price: 1.0},
+                        {id:101, name:"棒棒糖2", price: 2.0},
+                        {id:102, name:"棒棒糖3", price: 3.0},
+                    ]
+                    
+                }
+            },
+            methods: {
+                change() {
+                    // 以下方法触发侦听
+                    this.names.push("da");
+                    // this.names.splice(2, 1, 'zhou');
+                    // this.names.sort()
+                    // this.names.reverse()
+                    // 不修改原数组的方法不触发侦听
+                }
+            }
+        })
+
+        // 挂载app
+        app.mount("#app")
+        
+    </script>
+</body>
+</html>
+                                             

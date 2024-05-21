@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 插值语法表达式进行拼接 -->
+        <!-- <h2>{{ msg + "," + intro}}</h2>
+        <h2>{{ msg }},{{ intro }}</h2>
+
+        <h2>{{ msg.split("") }}</h2>
+        <h2>{{ msg.split("").reverse() }}</h2>
+        <h2>{{ msg.split("").reverse().join("") }}</h2> -->
+
+        <!-- 使用方法 -->
+        <!-- <h2 style="color: blue;">{{ splice_m() }}</h2> -->
+
+        <!-- 使用计算属性 -->
+        <!-- <h2 style="color: green;">{{ splice }}</h2> -->
+        <!-- <h2 style="color: red;">{{ reverse }}</h2> -->
+
+        <!-- 侦听器 -->
+        <h2 style="color: aqua;">{{ msg + "," + intro}}</h2>
+        <button @click="change">改变intro</button>
+
+
+
+
+
+
+    </div>
+    <!-- CDN引入 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.4.27/dist/vue.global.min.js"></script>
+
+    <script>
+        // 创建vue实例 
+        const app =  Vue.createApp({
+            // Option API
+            data: function() {
+                return {
+                    msg: "hello world",
+                    intro: "my name is lili",
+                    obj: { name: "lxj", age: 18},
+                    
+                }
+            },
+            methods: {
+                splice_m() {
+                    return this.msg + "," + this.intro
+                },
+                change() {
+                    console.log(this.intro)
+                    this.intro = "my name is dada"
+                    // this.obj = {}
+                    // 改变obj.name watch不能侦听到obj改变
+                    this.obj.name = "dada"
+
+                },
+
+            },
+            // 计算属性
+            // 包含响应式数据的复杂逻辑 使用计算属性
+            // 计算属性 VS methods
+            // 计算属性是有缓存的 计算属性基于依赖关系进行缓存
+            // 当数据不发生变化时，计算属性不需要重新计算
+            // 依赖的数据发生变化 计算属性重新计算
+            computed: {
+                // splice() {
+                //     return this.msg + "," + this.intro
+                // },
+                // reverse() {
+                //     return this.msg.split("").reverse().join("")
+                // },
+                // 计算属性的完整写法 不常用
+                // 一般只会用到get 使用上面的语法糖形式即可
+                // splice是一个对象
+                // splice: {
+                //     get: function() {
+                //         return this.msg + "," + this.intro
+                //     },
+                //     set: function(value) {
+                //         const arr = value.split(" ")
+                //         this.msg = arr[0]
+                //         this.intro = arr[1]
+                //     }
+                // },
+
+            },
+            // 侦听属性
+            // 
+            watch: {
+                // 默认会传过来两个参数 newValue/oldValue
+                // 侦听 intro 
+                intro(newValue, oldValue) {
+                    console.log("intro改变",newValue, oldValue)
+                },
+                // 当响应式为一个对象时，拿到的是proxy 原对象的代理
+                // 
+                obj(newValue, oldValue) {
+                    console.log("obj改变",newValue, oldValue)
+                    // 获取原始对象
+                    // console.log({...newValue})
+                    // console.log(Vue.toRaw(newValue))
+                },
+                // watch的配置选项 
+                obj: {
+                    handler(newValue, oldValue) {
+                       console.log("obj改变",newValue, oldValue)
+                       console.log(newValue === oldValue)
+
+                    },
+                    // 进行深度监听
+                    deep: true,
+                    // 第一次渲染时 执行侦听器
+                    immediate: true
+                }
+                
+            },
+            // 生命周期钩子函数 当前组件创建时自动执行
+            // 一般在该函数中 进行网络请求 fetch/ajax/axios
+            created() {
+                //
+                this.$watch("obj", (newValue, oldValue) => {
+                    console.log("obj改变",newValue, oldValue)
+                }, { deep: true })
+            }
+        })
+
+        // 挂载app
+        app.mount("#app")
+        
+    </script>
+</body>
+</html>
+                                             

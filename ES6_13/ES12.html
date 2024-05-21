@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let obj = {
+            name: "zhang",
+            age: 18,
+        }
+        // 销毁obj
+        // obj = null
+        // FinalizationRegistry 对象可以在对象垃圾被垃圾回收时请求一个回调
+        // 当一个在注册表中的对象被回收时，请求在某个时间点上调用一个清理回调（finalizer）
+        // 通过调用register方法 注册任何想要清理回调的对象 传入该对象和所含的值
+        // 带有强引用的对象不能销毁
+        const finalizationRegistry1 = new FinalizationRegistry((value) => {
+            console.log("对象obj回收时 调用函数")
+            console.log(value)
+        })
+        finalizationRegistry1.register(obj, "name")
+        
+        obj = null
+
+        // weakRefs
+        let obj1 = {
+            name: "zhang",
+            age: 18,
+        }
+        // 强引用赋值
+        let obj2 = obj1
+        // 弱引用赋值
+        let obj3 = new WeakRef(obj1)
+
+        const finalizationRegistry2 = new FinalizationRegistry((value) => {
+            console.log("对象obj1回收 调用函数")
+            console.log(value)
+        })
+        finalizationRegistry2.register(obj1, "name")
+        finalizationRegistry2.register(obj2, "name")
+        finalizationRegistry2.register(obj3, "name")
+
+        // obj1和obj2指向同一个对象 都是强引用
+        // obj2=null解除了obj2对对象的强引用，但obj1对对象仍然是强引用
+        // 所以对象没有销毁
+        // obj1 = null
+        obj2 = null
+        obj3 = null
+
+
+
+
+    </script>
+    
+</body>
+</html>

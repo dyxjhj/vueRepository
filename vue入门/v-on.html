@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="btnClick">点击按钮1</button>
+        <!-- 绑定的方法位置 也可以写成一个表达式  不常用且不推荐-->
+        <!-- 尽量避免在在模板中操作JS中的数据 -->
+        <h2>{{ count }}</h2>
+        <button @click="add">add1</button>
+        <button @click="count++">add2</button>
+
+        <!-- 绑定多个事件 mousemove事件  -->
+        <button @click="add" @mousemove="move">add1</button>
+        <button v-on="{click:add, mousemove:move}">add1</button>
+
+        <!-- 绑定事件的参数传递 -->
+        <button @click="btn1Click">参数传递1</button>
+        <!-- 明确传参 -->
+        <button @click="btn2Click(20,30,event)">参数传递2</button>
+        <button @click="btn3Click(20,30,$event)">参数传递3</button>
+
+        <!-- v-on修饰符 -->
+        <!-- .stop 阻止冒泡  -->
+        <!-- .prevent 阻止默认行为 -->
+        <!-- .once 只触发一次回调 -->
+
+
+
+    </div>
+    <!-- CDN引入vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.4.27/dist/vue.global.min.js"></script>
+
+    <script>
+        // 创建vue实例 
+        const app =  Vue.createApp({
+            data: function() {
+                return {
+                    msg: "hello world",
+                    count: 0,
+                }
+            },
+            methods: {
+                btnClick() {
+                    alert("点击了按钮")
+                },
+                add() {
+                    this.count++
+                },
+                move() {
+                    alert('鼠标移动')
+                },
+                btn1Click(event) {
+                    // 在绑定事件时，没有传递任何参数，event对象会默认传递
+                    console.log("btn1Click:",event)
+                },
+                btn2Click(agr1,agr2,event) {
+                    console.log("btn1Click:",agr1,agr2,event) //event undefined
+                },
+                btn3Click(agr1,agr2,event) {
+                    // 使用$event传递事件参数
+                    console.log("btn1Click:",agr1,agr2,event) 
+                },
+            }
+        })
+
+        // 挂载app
+        app.mount("#app")
+        
+    </script>
+</body>
+</html>
+                                             

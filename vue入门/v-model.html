@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- v-model指令可以在表单input textarea以及select元素上创建双向数据绑定 -->
+        <!-- <input type="text" value="hello world"> -->
+        <!-- v-bind绑定  单向绑定 -->
+        <!-- <input type="text" :value="msg"> -->
+        <!-- 为表单绑定输入事件  手动实现了双向绑定 -->
+        <input type="text" :value="msg" @input="inputChange">
+        <h2>{{ msg }}</h2>
+
+        <!-- v-model 双向绑定 -->
+        <input type="text" v-model="msg">
+        <h2>{{ msg }}</h2>
+
+        <!-- 同意协议 单选框 -->
+        <!-- v-model 绑定的是Boolean -->
+        <label for="agree">
+            <input id="agree" type="checkbox" v-model="isAgree">同意协议
+        </label>
+        <h2>{{ isAgree }}</h2>
+
+        <!-- 多选框  绑定到属性中的值是一个Array -->
+        <!-- 必须给每个选项绑定value -->
+        <!-- 当选中一个时，会将对应的value加入Array中 单选框中value没有意义 -->
+        <div class="hobbies">
+            <h2>爱好选项</h2>
+            <label for="sing">
+                <input id="sing" type="checkbox" v-model="hobbies" value="唱歌">唱歌
+            </label>
+            <label for="dance">
+                <input id="dance" type="checkbox" v-model="hobbies" value="跳舞">跳舞
+            </label>
+            <label for="rap">
+                <input id="rap" type="checkbox" v-model="hobbies" value="说唱">说唱
+            </label>
+        </div>
+        <h2>爱好{{ hobbies }}</h2>
+
+        <!-- v-model绑定radio -->
+        <div class="gender">
+            性别：
+            <!-- 通过name属性互斥 -->
+            <!-- 绑定v-model时，可以省略name属性 必须要有value属性 -->
+            <label for="male">
+                <input id="male" type="radio" v-model="gender" name="gender" value="男">男
+            </label>
+            <label for="female">
+                <input id="female" type="radio" v-model="gender" name="gender" value="女">女
+            </label>
+        </div>
+
+        <h2>性别为{{ gender }}</h2>
+
+        <!-- v-model绑定option -->
+        <!-- 下拉菜单 单选 -->
+        <select name="" id="" v-model="tech">
+            <option value="html">html</option>
+            <option value="css">css</option>
+            <option value="js">js</option>
+            <option value="jQuery">jQuery</option>
+        </select>
+        <h2>单选{{ tech }}</h2>
+
+        <hr>
+        <!-- 下拉菜单 多选 -->
+        <select multiple size="3" v-model="techs">
+            <option value="html">html</option>
+            <option value="css">css</option>
+            <option value="js">js</option>
+            <option value="jQuery">jQuery</option>
+        </select>
+        <h2>多选{{ techs }}</h2>
+
+        <!-- V-model修饰符 -->
+        <!-- 默认情况下 v-model在进行双向绑定时，绑定的是input事件 -->
+        <!-- lazy 修饰符  使v-model绑定为change事件-->
+        <!-- number修饰符  自动将内容转换成数字-->
+        <input type="text" v-model.number="counter1">
+        <h2>counter1:{{ counter1 }}+{{ typeof counter1}}</h2>
+
+        <input type="number" v-model="counter2">
+        <h2>counter2:{{ counter2 }}+{{ typeof counter2}}</h2>
+        <!--trim 去除首位空格 -->
+        
+
+
+    </div>
+    <!-- CDN引入 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.4.27/dist/vue.global.min.js"></script>
+
+    <script>
+        // 创建vue实例 
+        const app =  Vue.createApp({
+            data: function() {
+                return {
+                    msg: "hello world",
+                    isAgree: false,
+                    hobbies: [],
+                    gender: "男",
+                    tech: "",
+                    techs: [],
+                    counter1: "",
+                    counter2: 0,
+                    
+                }
+            },
+            methods: {
+                inputChange() {
+                    this.msg = event.target.value
+                }
+            }
+        })
+
+        // 挂载app
+        app.mount("#app")
+        
+    </script>
+</body>
+</html>
+                                             

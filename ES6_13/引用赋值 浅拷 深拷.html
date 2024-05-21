@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        const obj = {
+            name: "zhang",
+            age: 18,
+            height:1.99,
+        }
+        // obj1和obj指向堆区的同一个对象 引用赋值
+        const obj1 = obj
+
+        // 浅拷贝 展开运算符是一种浅拷贝
+        // obj2和obj指向堆区两个不同的对象  改变obj2的属性值不影响obj
+        const obj2 = {
+            ...obj
+        }
+        obj2.name = "li"
+        console.log(obj)
+        console.log(obj2)
+
+        // 深拷贝 对象中嵌套对象的情况
+        // 法一：借助第三方库
+        // 法二 自己构造函数 deepCopy
+        // 法三 利用JS现有的机制 JSON
+        // JSON.stringify(obj)转成JSON字符串
+        // JSON.parse() 转成对象 一个新的对象
+        const obj4 = JSON.parse(JSON.stringify(obj))
+        
+    </script>
+</body>
+</html>
