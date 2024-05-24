@@ -7,7 +7,70 @@
 </head>
 <body>
     <script>
-        
+        // .at() 使用字符串或数组时 at方法
+        var names = ["zhang", "tian", "li"]
+        console.log(names.at(1)) //tian
+        // -1从后向前 0只能代表正向第一个
+        console.log(names.at(-1)) //li
+
+        // 字符串
+        var str = "hello world"
+        console.log(str.at(1)) //e
+        console.log(str.at(-1)) //d
+
+        // Object.hasOwn(obj,propKey) 
+        const obj = {
+            name: "zhang",
+            age: 18,
+            __proto__: {
+                address: "xian"
+            }
+        }
+        console.log(obj.name,obj.age)
+        console.log(obj.address)
+
+        console.log(obj.hasOwnProperty("name"))
+        console.log(obj.hasOwnProperty("address"))
+        // hasOwn判断obj对象上有没有address属性
+        console.log(Object.hasOwn(obj, "address")) //false
+        // hasOwn替代hasOwnProperty
+        // 1.hasOwnProperty是一个实例方法 
+        // 对象内部存在hasOwnProperty方法 防止重写
+        const info = Object.create(null)
+        // 2.info的隐式原型指向null
+
+        // class中的新成员字段
+        class Student {
+            // 对象属性 添加给所有的对象 
+            // public instance fields 公共的实例属性
+            height = 1.99
+            // 对象属性：私有属性 外部仍可以访问
+            _info = "hao"
+            //ES13 私有 外部访问obj.#intro
+            #intro = "haoren" 
+
+            // 类属性 static public
+            static res = "88"
+            // 类属性 static private
+            static #res = "89"
+
+            // 构造函数
+            constructor(name, age) {
+                this.name = name,
+                this.age = age
+            }
+            // 静态代码块
+            static {
+                // 常用于初始化操作
+                console.log("hello")
+            }
+        }
+
+        const stu = new Student("zhang", 18)
+        console.log(stu)
+
+
+
     </script>
 </body>
 </html>
