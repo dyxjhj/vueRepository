@@ -32,16 +32,21 @@
         }
         // 强引用赋值
         let obj2 = obj1
-        // 弱引用赋值
+        // 弱引用赋值 仍然可以获取到obj1对象中的属性
         let obj3 = new WeakRef(obj1)
 
         const finalizationRegistry2 = new FinalizationRegistry((value) => {
             console.log("对象obj1回收 调用函数")
             console.log(value)
         })
+        // 加入注册表
         finalizationRegistry2.register(obj1, "name")
         finalizationRegistry2.register(obj2, "name")
         finalizationRegistry2.register(obj3, "name")
+
+        // 拿到obj3对应的引用 又是一个强引用
+        const obj3Info = obj3.deref()
+        console.log(obj3Info.name, obj3Info.age)
 
         // obj1和obj2指向同一个对象 都是强引用
         // obj2=null解除了obj2对对象的强引用，但obj1对对象仍然是强引用
