@@ -1,0 +1,134 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ </head>
+ <body>
+    <div class="name"></div>
+    <div class="age"></div>
+    <script>
+        
+        // 监听对象属性的操作
+        const obj1 = {
+            name: "zhang",
+            age: 18
+        }
+        let _name = obj1.name
+        // 响应式 数据和视图
+        // 监听对象属性操作
+        // obj1ect.defineProperty(obj1, "name", {
+        //     set: function(newValue) {
+        //         console.log("name设置了新值", newValue)
+        //         _name = newValue
+        //     },
+        //     get: function() {
+        //         console.log("获取name的值")
+        //         return _name
+        //     }
+        // })
+        // 监听所有的属性 vue2的响应式底层原理
+        // const keys = Object.keys(obj1)
+        // for(const key of keys) {
+        //     let value = obj1[key]
+        //     // defineProperty 存储属性描述符
+        //     Object.defineProperty(obj1, key, {
+        //     set: function(newValue) {
+        //         console.log(`${key}设置了新值`, newValue)
+        //         value = newValue
+        //     },
+        //     get: function() {
+        //         console.log(`获取${key}属性的值`)
+        //         return value
+        //     }
+        // })
+
+        // }
+        // console.log(obj1.name)
+        // obj1.name = "li"
+        // console.log(obj1.age)
+        // obj1.age = 20
+
+        // obj1ect.defineProperty的弊端
+        // 1.obj1ect.defineProperty设计的初衷是定义普通的属性，不是监听截止一个对象的属性的
+        // 2.新增属性，删除属性等更多的操作没有办法监听
+
+        // proxy类 可以帮助我们创建一个代理
+        // 监听一个对象的相关操作 先创建一个代理对象（proxy对象）
+        // 之后对该对象的所有操作，都通过代理对象来完成
+        const obj = {
+            name: "tian",
+            age: 22
+        }
+        // Proxy(target, handler) 传入一个侦听的对象以及一个处理对象
+        const objProxy = new Proxy(obj, {
+            // 捕获器（trap）
+            // set和get分别对应的是函数类型
+            // set函数有四个参数 
+            // target(目标对象 侦听的对象) property:将被设置的属性key
+            // value:新属性值 receiver:调用的代理对象
+            // get函数有三个参数
+            // target(目标对象 侦听的对象) property:将被设置的属性key
+            // receiver:调用的代理对象
+            set: function(target, key, value) {
+                console.log(`监听到了${key}设置新值：`,value)
+                target[key] = value
+            },
+            get: function(target, key) {
+                console.log(`监听到了${key}的获取`)
+                return target[key]
+            },
+            // 其他捕获器的监听方法
+            // 删除操作监听
+            deleteProperty: function(target, key) {
+                console.log(`监听到了${key}的删除`)
+                delete target[key]
+            },
+            // 判断
+            has: function(target, key) {
+                console.log(`监听到了${key}的in判断`)
+                return key in target
+            }
+
+        })
+        // 对obj的所有操作 操作obj的代理
+        console.log(objProxy.name)
+        objProxy.name = "li"
+        console.log(objProxy.name)
+
+        // 添加新属性可以生效
+        objProxy.height = 1.99
+
+        // 删除
+        delete objProxy.height
+
+        // 判断
+        console.log("age" in obj)
+
+        // 监听函数对象的操作
+        function fun() {
+
+        }
+        const funProxy = new Proxy(fun, {
+            apply(target, thisArg, otherArgs) {
+                console.log(`监听到执行apply操作`)
+                target.apply(thisArg,otherArgs)
+            },
+            construct(target, otherArray) {
+                console.log(`监听到new操作`)
+                console.log(target, otherArray)
+                return new target(...otherArray)
+            },
+
+        })
+        funProxy.apply("abc",[12,1,3])
+        new funProxy()
+
+
+
+
+        
+    </script>
+ </body>
+ </html>
