@@ -56,7 +56,7 @@
             console.log("执行失败", err)
         })
 
-        // 简洁写法
+        // 简洁写法 ***
         execCode(100).then((value) => {
             console.log("执行完了", value)
         }).catch((err) => {
@@ -98,7 +98,7 @@
             // resolve("success")
             reject("failure")
         })
-        // then参数的传递方式
+        // then参数的传递方式 ***
         promise3.then((res) => {
             console.log("执行成功", res)
         }, (err) => {
