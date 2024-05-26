@@ -4,7 +4,11 @@
         <div class="tab-control-item"
         :class="{active:index===currentIndex}"
         @click="itemClick(index)">
-            {{ item }}
+            <!-- span标签 -->
+            <!-- <span>{{ item }}</span> -->
+            <!-- 预留插槽 -->
+            <!-- 子组件传值给父组件 -->
+            <slot :item="item">{{ item }}</slot>
         </div>
     </template>
 
