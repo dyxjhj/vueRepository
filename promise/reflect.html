@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // reflect ES6新增的API 它是一个对象 字面意思是反射
+        // 主要提供了很多操作JS对象的方法 类似于Object中操作对象的方法
+        // Reflect.getPrototypeOf(target) 类似于 Object.getPrototypeOf(obj)
+        // Reflect.defineProperty(target,propertyKey,attribute) 类似于Object.defineProperty()
+        // ECMA 对对象本身进行操作 obj
+        // Object是一个构造函数（类） Object.foo 类方法 子类继承父类的方法
+        // Reflect 将这些操作都集中到Reflelct身上
+        // 使用proxy可以做到不操作原对象
+        
+        // const obj = {
+        //     name: "zhang",
+        //     age: 18,
+        // }
+        // Object.defineProperty(obj, name, {
+        //     configurable: false
+        // }) 
+        // // Reflect.defineProperty() 返回一个boolean类型
+        // // 可以判断是否定义成功
+        // delete obj.name
+        // // 判断是否操作成功
+        // if(obj.name) {
+        //     console.log("删除成功")
+        // } else {
+        //     console.log("删除失败")
+        // }
+        // // 结果：删除失败
+
+        // // Reflect 返回一个boolean属性
+        // if(Reflect.deleteProperty(obj, "name")) {
+        //     console.log("删除成功")
+        // } else {
+        //     console.log("删除失败")
+        // }
+
+        // Reflect常见方法
+        // Reflect和proxy共同完成代理
+        // const obj = {
+        //     name: "tian",
+        //     age: 22,
+        //     set name(newValue) {
+        //         console.log(this) //this指向obj对象 proxy代理的不能监听到对属性的操作
+        //         this.name = "liu"
+        //     },
+        //     get name() {
+        //         return this.name
+        //     }
+        // }
+
+        // // 
+        // // console.log(obj.name)
+        // // obj.name = "li"  //直接调用obj中的set方法
+        
+        // const objProxy = new Proxy(obj, {
+        //     set: function(target, key, value, receiver) {
+        //         // console.log(`监听到了${key}设置新值：`,value)
+        //         // 代理对象的目的 不再操作原对象
+        //         // target[key] = value
+        //         // 通过反射的方式操作
+        //         // 1.不直接操作对象
+        //         // 2.有返回值 可以判断操作是否成功
+        //         // 3.设置receiver 
+        //         // objProxy ===  receiver
+        //         // console.log(receiver) //objProxy
+        //         // Reflect.set/get的最后一个参数receiver 可以决定对象访问器setter和getter中this的指向
+        //         console.log("proxy中的设置方法被调用")
+        //         const isSuccess = Reflect.set(target, key, value, receiver)
+        //         debugger
+        //         if(!isSuccess) {
+        //             throw new Error(`set ${key} failure`)
+        //         }
+        //     },
+        //     get: function(target, key) {
+        //         console.log("proxy中的获取方法被调用")
+        //         return Reflect.get(target, key, receiver)
+        //     },
+
+        // })
+        // objProxy.name = "zhang"
+        // console.log(obj)
+
+        // Reflect中的construct
+        function Person(name, age) {
+            this.name = name,
+            this.age = age
+        }
+        function Student(name, age) {
+            // 原来
+            // Person.call(this, name, age)
+            const _this = Reflect.construct(Person, [name, age] ,Student)
+            return _this
+            
+        }
+        // 借助反射 使用别的构造函数构造对象
+        const stu = new Student("zhang" ,18)
+        console.log(stu)
+        console.log(stu.__proto__ === Student.__proto__)
+
+
+
+    </script>
+</body>
+</html>
