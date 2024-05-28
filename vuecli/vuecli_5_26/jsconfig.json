@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    // 打包的最终结果
+    "target": "es5",
+    "module": "esnext",
+    "baseUrl": "./",
+    "moduleResolution": "node",
+    "paths": {
+      // 配置src路径的别名
+      "@/*": [
+        "src/*"
+      ],
+      "assets": [
+        "src/assets/*"
+      ]
+    },
+    // 用到的库
+    "lib": [
+      "esnext",
+      "dom",
+      "dom.iterable",
+      "scripthost"
+    ]
+  }
+}

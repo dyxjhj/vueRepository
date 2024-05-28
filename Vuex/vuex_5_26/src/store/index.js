@@ -9,14 +9,16 @@ import { createStore } from "vuex";
 const store = createStore({
     state() {
         return {
-            counter: 10,
+            counter: 1,
             name: "zhang",
             age: 18,
             avaturURL: "http://xxxxxxx"
         }
     }, 
+    // 更改状态的唯一路径 提交Mutation
     mutations: {
         addClick(state) {
+            console.log("mutations addClick")
             state.counter++
         }
     }, 
