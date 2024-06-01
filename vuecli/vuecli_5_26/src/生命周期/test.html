@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 组件的生命周期
+        // 创建组件 => 组件挂载到组件树 => 修改数据 组件更新 => 卸载
+        // 生命周期函数是一些钩子函数（回调函数） 在某个时间会被vue源码进行回调
+        // 通过对生命周期的回调 可以知道目前组件正在经历什么阶段
+        // 生命周期的流程
+        // beforeCreate 创建组件实例 *created（发送网络请求；事件监听this.$watch）
+        // template模板编译：beforeMount 挂载到虚拟DOM=>真实DOM=>页面显示 *mounted(元素已被挂载 获取DOM)
+        // 数据更新： beforeUpdate 生成新的VNode=> 真实DOM updated
+        // v-if:false  beforeDestroy 将虚拟DOM上的VNode移除 *destroyed（回收操作：取消事件监听）
+        
+    </script>
+</body>
+</html>
