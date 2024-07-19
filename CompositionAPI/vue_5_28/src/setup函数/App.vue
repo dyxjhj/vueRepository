@@ -1,6 +1,8 @@
 <template>
 <div>
     <showInfo :info="info"></showInfo>
+    <h2>App:{{ info }}</h2>
+
     
 </div>
   
