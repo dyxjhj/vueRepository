@@ -57,9 +57,21 @@ const router = createRouter({
             path: "/:pathMatch(.*)", //path: "/:pathMatch(.*)*" 可以解析成以/分割的数组
             component: () => import("../views/404page.vue")
 
-        }
+        },
+        // 路由导航守卫 订单路由注册
+        {
+            path: "/order", 
+            component: () => import("../views/order.vue")
+
+        },
+        {
+            path: "/login", 
+            component: () => import("../views/login.vue")
+
+        },
     ]
 })
+// 动态路由
 let isAdmin = true;
 if(isAdmin) {
     // 添加一级路由
@@ -73,7 +85,32 @@ if(isAdmin) {
         component: () => import('../views/homeChildren1.vue')
     })
 }
-// 获取所有的动态路由对象
+// 获取所有的映射路由对象
 console.log(router.getRoutes())
 
+// 路由导航守卫
+// beforeEach（全局的前置守卫） 在进行任何路由跳转之前 传入beforeEach中的函数都会被回调
+// to:即将进入的路由 from:即将离开的路由
+// 返回值
+// false:取消当前导航
+// 不返回或者undefined:进行默认导航
+// 返回一个路由地址：1.可以是一个string类型的路径 2.可以是一个对象，对象中包含path,query,params等信息
+// 需求：进入订单页面（order）时，判断用户是否登录(isLogin --> localStorage中保存token)
+// 情况1：已经登录，直接跳转
+// 情况2：没有登录，跳转到登录界面，进行登录
+router.beforeEach((to, from) => {
+    // 进入任何非login时进行拦截 跳转到login
+    // if(to.path !== '/login') {
+    //     return '/login'
+    // }
+    // 进入订单页面时判断
+    // 获取token
+    const token = localStorage.getItem('token')
+    if(!token && to.path === '/order') {
+        return '/login'
+    }
+
+})
+
 export default router
+
