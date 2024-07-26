@@ -21,6 +21,9 @@
     <h2>name: {{ name }}</h2>
     <h2>age: {{ age }}</h2>
 
+    <h3>doubleCount{{ $store.getters.doubleCount }}</h3>
+    <h3>totalAge{{ $store.getters.totalAge }}</h3>
+
 
 
 </div>
@@ -58,6 +61,7 @@
     import { computed, toRefs } from 'vue'
     import { useStore } from 'vuex'
     import { mapState } from 'vuex'
+    import { mapGetters } from 'vuex'
     // composition API中的使用
 
     // const store = useStore()
@@ -66,7 +70,7 @@
     // mapState使用
     // 1.解构赋值
     // const { name, age } = mapState(["name","age",])
-    // // 绑定对象
+    // // 绑定this对象
     // const cName = computed(name.bind({$store: store}))
     // const cAge = computed(age.bind({$store: store}))
 
@@ -74,7 +78,7 @@
     // const { name, age } = store.state 非响应式的
     // const { name, age } = toRefs(store.state) 响应式的
     const store = useStore()
-    const { name, age } = toRefs(store.state)
+    const { name: sName, age } = toRefs(store.state)
 
 
     function addClick() {
@@ -87,6 +91,19 @@
     function change() {
         test++
     }
+
+    // getters的映射 mapGetters
+    // options API中的使用和mapState相同
+    // setup中使用
+    // 1.拿到的是函数
+    // const { message: msgFn } = mapGetters(['message'])
+    // const msg = computed(msgFn.bind({$store: store }))
+    // 2.直接解构 toRefs转换成响应式的
+    // const msg = toRefs(store.getters)
+    // 3.针对某一个getters属性使用computed
+    const msg = computed(() => store.getters.message)
+
+
 </script>
 
 <style scoped>

@@ -1,6 +1,9 @@
 <template>
 <div>
-    <h2>{{ info }}</h2>
+    <h2>showInfo:{{ info }}</h2>
+    <button @click="info.name = 'li'">按钮</button>
+    <!-- 在子组件中修改父组件中的值 不符合规范 违反单向数据流 -->
+    <!-- 修改 传递事件 让父组件修改 -->
     
 </div>
   

@@ -1,7 +1,10 @@
 <template>
 <div>
     <showInfo :info="info"></showInfo>
-    
+    <h2>App:{{ info }}</h2>
+
+    <!-- setup中不能使用this -->
+    <!-- 因为在setup中找不到组件实例 -->
 </div>
   
 </template>
