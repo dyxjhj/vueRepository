@@ -12,13 +12,21 @@
       <!-- <router-link to="/user">用户</router-link> -->
       <router-link to="/user/111">用户111</router-link>
       <router-link to="/user/222">用户222</router-link>
+      <!-- 进入订单页面 -->
+      <!-- 1.判断用户是否登录 -->
+      <!-- 已经登录：直接跳转 -->
+      <!-- 未登录：跳转到登录界面，登录成功跳转到首页或订单页 -->
+      <router-link to="/order">订单</router-link>
+
       <!-- router-link-active类自动添加 -->
       <!-- active-class属性自定义激活状态的类名 -->
-
 
       <!-- 其他元素跳转 编程式导航 -->
       <button @click="jumpHome">跳转首页</button>
       <button @click="jumpAbout">跳转详情</button>
+
+      <!-- 路由导航守卫 -->
+
 
     </div>
     <router-view></router-view>
