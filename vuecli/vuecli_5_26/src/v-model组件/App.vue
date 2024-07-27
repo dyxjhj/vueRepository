@@ -1,9 +1,9 @@
 <template>
 <div>
     <!-- input上的v-model  数据的双向绑定-->
-    <input v-model="msg">
+    <!-- <input v-model="msg"> -->
     <!-- v-model相当于v-bind绑定value 再监听input事件 -->
-    <input :value="msg" @input="msg = $event.target.value">
+    <!-- <input :value="msg" @input="msg = $event.target.value"> -->
     
     <!-- 组件的v-model -->
     <!-- <counter v-model="appCounter"></counter> -->
