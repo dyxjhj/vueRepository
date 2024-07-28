@@ -1,12 +1,12 @@
 <template>
 <div class="app">
     <!-- 1.模板中的使用 -->
-    <h2>Home当前计数{{ $store.state.counter }}</h2>
+    <!-- <h2>Home当前计数{{ $store.state.counter }}</h2>
     <h2>{{ $store.state.counter }}</h2>
     <h2>{{ $store.state }}</h2>
     <button @click="change">{{ test }}</button>
 
-    <button @click="addClick">+1</button>
+    <button @click="addClick">+1</button> -->
     <!-- 在模板中使用多个状态  -->
     <!-- <h2>name: {{ $store.state.name }}</h2>
     <h2>age: {{ $store.state.name }}</h2>
@@ -18,12 +18,25 @@
     <!-- <h2>name: {{ cName }}</h2>
     <h2>age: {{ cAge }}</h2> -->
 
-    <h2>name: {{ name }}</h2>
+    <!-- <h2>name: {{ name }}</h2>
     <h2>age: {{ age }}</h2>
 
     <h3>doubleCount{{ $store.getters.doubleCount }}</h3>
-    <h3>totalAge{{ $store.getters.totalAge }}</h3>
+    <h3>totalAge{{ $store.getters.totalAge }}</h3> -->
 
+    <!-- mapMutations -->
+    <!-- <h2>{{ $store.state.name }}</h2>
+    <button @click="changeName">修改名字</button>
+
+    <h2>counter:{{ $store.state.counter }}</h2>
+    <button @click="addCounter">counter++</button>
+
+    <h2>info: {{ $store.state.info }}</h2>
+    <button @click="changeInfoName('小红')">changeInfoName</button> -->
+
+    <!-- action -->
+    <h2>counter:{{ $store.state.name }}</h2>
+    <button @click="changeNameAction">发起action</button>
 
 
 </div>
@@ -59,9 +72,10 @@
 <script setup>
     // composition API 
     import { computed, toRefs } from 'vue'
-    import { useStore } from 'vuex'
+    import { mapActions, mapMutations, useStore } from 'vuex'
     import { mapState } from 'vuex'
     import { mapGetters } from 'vuex'
+     
     // composition API中的使用
 
     // const store = useStore()
@@ -102,6 +116,50 @@
     // const msg = toRefs(store.getters)
     // 3.针对某一个getters属性使用computed
     const msg = computed(() => store.getters.message)
+
+
+    // mutation的使用
+    // function changeName() {
+    //     store.commit('changeName')
+    // }
+
+    // function addCounter() {
+    //     store.commit('addCounter')
+    // }
+    // function changeInfoName() {
+    //     store.commit('changeInfoName', '李三财')
+    // }
+    // mapMutation 映射 需要手动绑定store
+    const mutations = mapMutations(['changeName','addCounter','changeInfoName'])
+    const newMutations = {}
+    Object.keys(mutations).forEach(key => {
+        newMutations[key] = mutations[key].bind({ $store: store})
+    });
+    const { changeName, addCounter, changeInfoName } = newMutations
+
+    // action
+    // function actionTrigger() {
+    //     // 派发action
+    //     store.dispatch('changeNameAction')
+    // }
+    // mapAction 在setup中使用辅助函数
+    const actions = mapActions(['changeNameAction'])
+    const newActions = {}
+    Object.keys(actions).forEach(key => {
+        newActions[key] = actions[key].bind({ $store: store})
+    });
+    const { changeNameAction } = newActions
+
+
+    // 告诉vuex发起网络请求
+    store.dispatch('fetchGetdataAction')
+    // 监听网络请求操作是否结束
+    // 异步函数自动返回promise (async)
+    store.dispatch('fetchGetdataAction').then(res => {
+        console.log(res)
+    })
+
+
 
 
 </script>
