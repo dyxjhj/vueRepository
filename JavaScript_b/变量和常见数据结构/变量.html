@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+  <script>
+
+    // 定义一个变量
+    // 第一步： 变量的声明（高级js引擎接下来我要定义一个变量）
+    // var关键字
+    // 第二步: 变量的赋值(使用=赋值即可)
+    // var currentTime = "16:00"
+
+    // 其他的写法一:
+    // var currentTime;
+    // currentTime = "16:02";
+    // currentTime = "17:00";
+
+    // 其他的写法二: 同时声明多个变量(不推荐, 阅读性比较差)
+    // var name, age, height
+    // name = "why"
+    // age = 18
+    // height = 1.88
+    var name = "why", age = 18, height = 1.88;
+
+    // 补充:
+    // 1.当我们打印变量时, 实际上是在打印变量中保存的值
+    // 2.console.log(参数1, 参数2, 参数3...........)
+    console.log(name, age, height);
+
+    // 变量命名
+    // 规则: 必须遵守
+    // 保留字 有可能变成关键字
+
+    // 规范: 建议遵守
+    // 1.多个单词, 建议使用驼峰标识(小驼峰)
+    // 小驼峰(currentTime)/大驼峰(CurrentTime)
+    // 2.推荐=的左右两边加上空格
+    var currentTime = "16:18"
+    var currentPrice = "¥100"
+
+    // 练习
+    // 练习一: 定义变量保存个人信息
+    var name = "why"
+    var age = 18
+    var height = 1.88
+    var weight = 160
+    var address = "广州市"
+
+    // 修改变量的值(重新赋值)
+    age = 19
+    height = 1.90
+    weight = 165
+    address = "深圳市"
+
+    // 练习二: 将一个变量的值, 赋值给另外一个变量
+    var nickname = "张三"
+    var admin = nickname
+    console.log(nickname, admin)
+    // 练习三: 定义两个变量保存两个数字, 对两个变量中的数字进行交换
+    var num1 = 10
+    var num2 = 20
+    // 方法一: 借助第三个变量
+    // console.log("交换前, num1, num2:", num1, num2)
+    // var temp = num1
+    // num1 = num2
+    // num2 = temp
+    // console.log("交换后, num1, num2:", num1, num2)
+
+    // 方法二: 不借助于第三个变量完成交换(了解, 笔试面试题)
+    console.log("交换前, num1, num2:", num1, num2)
+    num1 = num1 + num2 // num1: 30, num2: 20
+    num2 = num1 - num2 // num1: 30, num2: 10
+    num1 = num1 - num2 // num1: 20, num2: 10
+    console.log("交换后, num1, num2:", num1, num2)
+
+
+    // 练习四: 接受用户输入一个值, 并且使用一个变量来保存
+    var inputInfo = prompt("请输入一个值吧!")
+    console.log(inputInfo)
+
+
+    // 注意事项
+    // 注意事项一: 如果一个变量未声明就直接使用, 那么会直接报错
+    // var currentAge = age
+    // var name = "why"
+    // console.log(message)
+
+    // 注意事项二: 如果一个变量有声明, 但是没有赋值操作
+    // var info
+    // console.log(info)  //undefined
+
+    // 注意事项三: 在JavaScript中也可以不使用var在全局声明一个变量(不推荐)
+    // 如果不使用var来声明一个变量, 也是可以声明成功的, 并且这个变量会被加入window对象
+    address = "广州市"
+    console.log(address)
+
+    // 数据类型
+    // 一串文本组成, 称之为是一个字符串
+    var description = "了解真相, 你才能获得真正的自由!"
+    description = 123;
+    console.log(description)
+
+    // 其他语言中声明一个变量如何指定类型
+    // java
+    // String description = "了解真相, 你才能获得真正的自由!";
+    // description = 123
+    // swift: 自动类型推导
+    // var description = "了解真相, 你才能获得真正的自由!"
+    // description = 123
+
+    // typeof操作符
+    // info = 18
+    // info = {}
+    console.log(typeof info)
+
+    // 2.typeof的其他类型
+    var age
+    console.log(typeof age) //undefined
+
+    // 3.null的操作
+    var address = null
+    console.log(typeof address)  //Object
+
+
+    // 4.()的作用
+    // ()表示的是调用函数
+    // alert()
+
+    // ()将某一个表达式当做一个真题
+    var result = (2 + 3) * 4
+
+    console.log(typeof (info))
+
+
+
+
+  </script>
+
+</body>
+
+</html>

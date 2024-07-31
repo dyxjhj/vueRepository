@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        // Number类型
+        console.log('---------Number类型---------')
+        // 1.基本使用
+        var age = 18
+        var height = 1.88
+
+        // 2.特殊的数值
+        // Infinity
+        var num1 = Infinity
+        var num2 = 1 / 0
+        console.log(num1, num2)
+
+        // NaN: not a number(不是一个数字)
+        // 一般情况下表示一个计算错误
+        var result = 3 * "abc"
+        console.log(result)
+        console.log(isNaN(result))
+
+        // 3.进制表示
+        var num3 = 100 // 十进制
+        // 了解
+        var num4 = 0x100 // 十六进制
+        var num5 = 0o100 // 八进制
+        var num6 = 0b100 // 二进制
+        console.log(num4, num5, num6)
+
+        // 5.数字可以表示的范围 
+        // 常量 MAX_VALUE 大写表示
+        var max = Number.MAX_VALUE
+        var min = Number.MIN_VALUE
+        console.log(max, min) //1.7976931348623157e+308  5e-324
+
+        // String类型
+        console.log('---------String类型---------')
+        // 1.基本使用
+        var name = "张三"
+        var address = "西安市"
+        var intro = "失败是成功之母!"
+
+        // 2.引号的使用
+        // 单引号
+        var message1 = 'Hello World'
+        // 双引号
+        var message2 = "Hello World"
+        // 反引号(ES6新增语法) 
+        // ${变量/表达式}
+        var message3 = `Hello World, ${name}, ${2 + 3}`
+
+        // 3.转义字符: 字符串本身中包含引号
+        var message4 = 'my name is "张三"'
+        console.log(message4)
+
+        var message5 = 'my name \\ \'\' is "张三"'  //my name \ '' is "张三"
+        console.log(message5)
+
+        // 4.<字符串>本身有的方法和属性
+        var msg = "Hello World"
+        console.log(msg.length)
+
+        // 字符串拼接
+        var nickname = "张三"
+        var info = "my name is "
+        var infoStr = `my name is ${nickname}` // 推荐(babel) ES6 ==> ES5
+        var infoStr2 = info + nickname
+        console.log(infoStr, infoStr2)
+
+        // Boolean类型      
+        // 可以自己制定规范 1为真 0为假
+        // Object C语言 YES表示真 NO表示假
+        console.log('---------Boolean类型---------')
+        // 登录状态
+        var isLogin = false
+        var isAdmin = true
+
+        // undefined 值 类型为Undefined
+        console.log('---------Undefined类型---------')
+        var message
+        var info = undefined // 不推荐
+
+        console.log(message, info)
+
+        // Object类型
+        console.log('---------Object类型---------')
+        // var name = "why"
+        // var age = 18
+        // var height = 1.88
+        var person = {
+            name: "why",
+            age: 18,
+            height: 1.88
+        }
+        console.log(person)
+
+        // 2.对象类型中某一个属性
+        console.log(person.name)
+
+        // Null类型
+        //类型的初始化
+        var age = 0
+        var num = 0
+        var message = "" // 空字符串
+        var isAdmin = false
+
+        // Null存在的意义就是对 对象进行初始化的, 并且在转成Boolean类型时, 会转成false
+        // var book = {} 空对象实际上仍然会在堆内存中创建一个对象 空对象转换成Boolean类型时，会转换成true
+        var book = null
+        console.log('typeof book:', typeof book) // object
+
+        // 什么是数据类型的转换
+        console.log('-------类型转换-------')
+        var isAdmin = true
+        var result2 = 10 + isAdmin // isAdmin -> 1  隐式转换
+        console.log('result2:', result2)  //11 
+
+        // 其它类型 ==> 字符串类型
+        var num1 = 123
+        var age = 18
+        var isAdmin = true
+        // 1.转换方式一: 隐式转换(用的非常多)
+        var num1Str = num1 + ""
+        var ageStr = age + ""
+        var isAdminStr = isAdmin + ""
+        console.log('隐式转换成字符串类型', typeof num1Str, typeof ageStr, typeof isAdminStr)
+
+        // 2.转换方式一: 显示转换 String函数4
+        var num1Str2 = String(num1)
+        console.log(typeof num1Str2)
+
+
+        // 其它类型 ==> 数字类型
+        // 方式一: 隐式转换(用的很少)
+        var num1 = "8"
+        var num2 = "4"
+        var result1 = num1 + num2  // 84
+        console.log(typeof result1) //string
+
+        var result2 = num1 * num2
+        console.log(result2)
+
+        // 方式二: 显示转换(Number())
+        var result3 = Number(num1)
+        console.log(typeof result3)
+
+        // 其他类型转成数字类型的规则:
+        console.log(Number(undefined)) // NaN
+        console.log(Number(true)) // 1
+        console.log(Number(false)) // 0
+        console.log(Number(null)) // 0
+        console.log(Number("abc123")) // NaN
+        console.log(Number("         123       ")) // 123
+        console.log(Number("")) // 0
+
+        // 其它类型 ==> Boolean类型
+        // 方式一: 隐式转换
+        // 分支语句
+        var isAdmin = true
+        var num1 = 123 // true
+        // if(num1 = 123)
+        // 方式二: 显示转换
+        console.log(Boolean(num1), Boolean(undefined))
+
+        // 转换有如下的规则: 
+        // 直观上为空的值, 转成Boolean类型都是false
+        // 直观上为空的值: 0  ""  undefined  null  NaN -> false
+
+        // 注意事项
+        console.log(Boolean("")) // false
+        console.log(Boolean("0")) // true
+
+
+    </script>
+
+</body>
