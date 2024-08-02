@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      color: red;
+    }
+
+    table {
+      border-collapse: collapse;
+    }
+
+    td {
+      padding: 8px 16px;
+      border: 1px solid red;
+      color: #4433;
+    }
+  </style>
+</head>
+
+<body>
+
+  <script>
+
+    // while () {
+    //   console.log("Hello World")
+    // }
+
+    // 死循环
+    // while (true) {
+    //   console.log("Hello World")
+    //   console.log("Hello 张三")
+    // }
+
+    // 1.练习一: 打印10次Hello World
+    // var count = 0
+    // while (count < 10) {
+    //   console.log("Hello World:", count)
+    //   count++ // 10
+    // }
+
+    // 2.练习二: 打印0~99的数字
+    // var count = 0
+    // while (count < 100) {
+    //   console.log(count)
+    //   count++
+    // }
+
+    // 3.练习三: 计算0~99的数字和
+    // var count = 0
+    // var totalCount = 0
+    // while (count < 100) {
+    //   totalCount += count
+    //   count++
+    // }
+    // console.log("totalCount:", totalCount)
+
+    // 4.练习四: 计算0~99的奇数和
+    // 如何判断一个数字是奇数还是偶数
+    // var num = 120
+    // if (num % 2 !== 0) { // 奇数
+    //   console.log("num是一个奇数")
+    // }
+    // var count = 0
+    // var totalCount = 0
+    // while (count < 100) {
+    //   if (count % 2 !== 0) {
+    //     totalCount += count
+    //   }
+    //   count++
+    // }
+
+    // console.log("所有的奇数和:", totalCount)
+
+
+    // 5.练习五: 计算0~99的偶数和
+    var count = 0
+    var totalCount = 0
+    while (count < 100) {
+      if (count % 2 === 0) {
+        totalCount += count
+      }
+      count++
+    }
+
+    console.log("所有的偶数和:", totalCount)
+
+    // 算法优化
+    var count = 0
+    var totalCount = 0
+    while (count < 100) {
+      totalCount += count
+      count += 2
+    }
+
+    console.log("所有的偶数和:", totalCount)
+
+
+    // do..while语法结构
+    // do {
+
+    // } while (条件)
+
+    // 练习一: 打印10次Hello World
+    var count = 0
+    do {
+      console.log("Hello World")
+      count++
+    } while (count < 10)
+
+    // 练习二: 计算0~99的数字和
+    var count = 0
+    var totalCount = 0
+    do {
+      totalCount += count
+      count++
+    } while (count < 100)
+    console.log("totalCount:", totalCount)
+
+    /*
+      1.首先, 会先执行var count = 0;
+      2.根据条件执行代码
+        * count < 3
+        * alert(count) // 0 1 2
+        * count++
+    */
+    // for (var count = 0; count < 3; count++) {
+    //   alert(count)
+    // }
+
+    // 1.打印10次Hello World
+    // for (var i = 0; i < 10; i++) {
+    //   console.log("Hello World")
+    // }
+
+    // 2.打印0~99的数字
+    // for (var i = 0; i < 100; i++) {
+    //   console.log(i)
+    // }
+
+    // 3.0~99的数字和
+    // var totalCount = 0
+    // for (var i = 0; i < 100; i++) {
+    //   totalCount += i
+    // }
+    // console.log("totalCount:", totalCount)
+
+    // 4.0~99的奇数和
+    // var totalCount = 0
+    // for (var i = 0; i < 100; i++) {
+    //   if (i % 2 !== 0) {
+    //     totalCount += i
+    //   }
+    // }
+    // console.log("totalCount:", totalCount)
+
+    // 算法优化
+    // var totalCount = 0
+    // for (var i = 1; i < 100; i += 2) {
+    //   totalCount += i
+    // }
+    // console.log("totalCount:", totalCount)
+
+    // 循环嵌套
+    // for循环的嵌套: 循环中执行体, 里面又嵌套了循环
+    // for (var i = 0; i < 10; i++) {
+
+    //   console.log("i开始执行:", i)
+
+    //   for (var j = 0; j < 3; j++) {
+    //     console.log("执行j循环")
+    //   }
+
+    //   console.log("i结束执行:", i)
+    // }
+
+    // 在屏幕上显示一个❤
+    // document.write("❤")
+
+    // 案例一: 
+    // 使用div进行包裹 并且可以进行样式调整
+    // for (var i = 0; i < 9; i++) {
+    //   document.write("<div>")
+
+    //   for (var m = 0; m < 10; m++) {
+    //     document.write("❤ ")
+    //   }
+
+    //   document.write("</div>")
+    // }
+    // document.write("<table>")
+    // for (var i = 0; i < 9; i++) {
+    //   document.write("<tr>")
+
+    //   for (var m = 0; m < i + 1; m++) {
+    //     var a = m + 1 //m:0~8 ===> a:1~9
+    //     var b = i + 1 //i每次外层循环中的数据不变
+    //     var result = (m + 1) * (i + 1)
+    //     // document.write(`${a}*${b}=${result} `)
+    //     document.write("<td>")
+    //     document.write(a + "*" + b + "=" + result + " ")
+    //     document.write("</td>")
+
+    //   }
+
+    //   document.write("</>")
+    // }
+    // document.write("</table>")
+
+    // 控制循环
+    var names = ["abc", "cba", "nba", "mba", "bba", "aaa", "bbb"]
+
+    // 循环遍历数组
+    // break关键字的使用
+    // 需求: 遇到nba时, 不再执行后续的迭代
+    // for (var i = 0; i < names.length; i++) {
+    //   console.log(names[i])
+    //   if (names[i] === "nba") {
+    //     break
+    //   }
+    // }
+
+    // continue关键字的使用: 立刻结束本次循环, 执行下一次循环(step)
+    // 需求: 不打印nba
+    // for (var i = 0; i < 7; i++) {
+    //   if (names[i] === "nba" || names[i] === "cba") {
+    //     continue
+    //   }
+    //   console.log(names[i])
+    // }
+
+    // 生成随机数
+    // Math.random(): [0, 1)
+    for (var i = 0; i < 10; i++) {
+      var randomNum = Math.random() * 100 // 99
+      randomNum = Math.floor(randomNum)
+      console.log(randomNum)
+    }
+
+    // 生成一个0~99的随机数 floor取整
+    var randomNum = Math.floor(Math.random() * 100)
+
+    // 猜数字
+    // 1.随机生成一个0~99的数字
+    // var randomNum = Math.floor(Math.random() * 100)
+    // alert(randomNum)
+
+    // 2.玩家有7次机会猜测数字
+    var isSuccess = false
+    var count = 3
+    // for (var i = 0; i < count; i++) {
+    //   // 获取用户的输入
+    //   var inputNum = Number(prompt("请输入您猜测的数字:"))
+
+    //   // 和randomNum进行比较
+    //   if (inputNum === randomNum) {
+    //     alert("恭喜您, 猜对了")
+    //     isSuccess = true
+    //     break
+    //   } else if (inputNum > randomNum) {
+    //     alert("您猜大了")
+    //   } else {
+    //     alert("您猜小了")
+    //   }
+
+    //   if (i === count - 1) {
+    //     alert("您的次数已经用完了")
+    //   }
+    // }
+
+    // if (!isSuccess) {
+    //   alert("您的机会用完了~")
+    // }
+
+
+
+  </script>
+
+</body>
+
+</html>
