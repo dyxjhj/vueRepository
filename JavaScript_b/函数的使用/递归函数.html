@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+
+    function bar() {
+
+    }
+
+    // 递归调用
+    // 默认情况下会产生无限调用的情况 栈溢出stack overflow
+    function foo() {
+      console.log("foo函数被执行了")
+      foo()
+    }
+
+    foo()
+
+    // 需求: 封装一个函数, 函数可以实现x的n次方法
+    function pow1(x, n) {
+      return x ** n
+    }
+
+    // console.log(pow1(2, 3))
+    // console.log(pow1(3, 3))
+
+    // console.log(Math.pow(2, 3))
+    // console.log(Math.pow(3, 3))
+
+    // 一. for循环实现方式 
+    // x² = x * x
+    // x³ = x * x * x
+    function pow2(x, n) {
+      var result = 1
+      for (var i = 0; i < n; i++) {
+        result *= x
+      }
+      return result
+    }
+
+    console.log(pow2(2, 3))
+    console.log(pow2(3, 3))
+
+    // 二. 递归实现方式(必须有一个结束条件)
+    // 缺点: 性能是比较低(占用过多的栈内存)
+    // 优点: 写出来的代码非常简洁
+    function pow(x, n) {
+      if (n === 1) {
+        return x
+      }
+      return x * pow(x, n - 1)
+    } 3333333333333333333333333333333333333333333333333333333333
+
+    console.log(pow(2, 3))
+    console.log(pow(3, 3))
+
+    // 什么是斐波那契数列
+    // 数列: 1 1 2 3 5 8 13 21 34 55  ... x
+    // 位置: 1 2 3 4 5 6 7  8  9  10  ... n
+
+    // 1.斐波那契的递归实现
+    function fibonacci(n) {
+      if (n === 1 || n === 2) return 1
+      return fibonacci(n - 1) + fibonacci(n - 2)
+    }
+
+
+    // 2.斐波那契的for循环实现
+    function fibonacci(n) {
+      // 特殊的情况(前两个数字)
+      if (n === 1 || n === 2) return 1
+
+      // for循环的实现
+      var n1 = 1
+      var n2 = 1
+      var result = 0
+      for (var i = 3; i <= n; i++) {
+        result = n1 + n2
+        // 游标 数据库中的叫法
+        n1 = n2
+        n2 = result
+      }
+      return result
+    }
+
+    console.log(fibonacci(5))
+    console.log(fibonacci(10))
+    console.log(fibonacci(20))
+
+
+  </script>
+
+</body>
+
+</html>

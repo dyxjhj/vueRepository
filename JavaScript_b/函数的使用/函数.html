@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+
+    // stackover flow: 程序问答网站
+    // 一些常见的单词
+    // 伪变量
+    // 1.foo 变量
+    // 2.bar 函数
+    // 3.baz 对象
+    var foo = "xxxxxx"
+    function bar() {
+
+    }
+    var baz = {
+
+    }
+
+    // 声明一个函数
+    // 制作好一个工具, 但是这个工具默认情况下是没有被使用
+    // function sayHello() {
+    //   console.log("Hello!")
+    //   console.log("My name is 张三!")
+    // }
+
+    // // 调用一个函数
+    // sayHello()
+    // // 函数可以在任何需要的地方进行调用
+    // sayHello()
+
+    // 练习一: 定义一个函数, 打印自己的个人信息
+    function printInfo() {
+      console.log("my name is 张三")
+      console.log("age is 18")
+      console.log("height is 1.88")
+    }
+
+    printInfo()
+    printInfo()
+
+    // 练习二: 定义一个函数, 在内部计算10和20的和
+    function sum() {
+      var num1 = 10
+      var num2 = 20
+      var result = num1 + num2
+      console.log("result:", result)
+    }
+    sum()
+
+    // name/age/height称之为函数的参数(形参, 形式参数, paramaters)
+    function printInfo(name, age, height) {
+      console.log(`my name is ${name}`)
+      console.log(`age is ${age}`)
+      console.log(`height is ${height}`)
+    }
+
+    // 张三/18/1.88称之为函数的参数(实参, 实际参数, arguments)
+    printInfo("李四", 18, 1.88)
+    printInfo("王五", 30, 1.98)
+
+    // 求和函数重构
+    function sum(num1, num2) {
+      var result = num1 + num2
+      console.log("result:", result)
+    }
+
+    sum(20, 30)
+    sum(123, 321)
+
+
+    // var result = prompt("请输入一个数字:")
+    // 1.理解函数的返回值
+    // function sayHello(name) {
+    //   console.log(`Hi ${name}`)
+    // }
+
+    // var foo = sayHello("Kobe")
+    // console.log("foo:", foo)  //undefined
+
+    // 2.返回值的注意事项
+    // 1️⃣所有的函数, 如果没有写返回值, 那么默认返回undefined
+    // function foo() {
+    //   console.log("foo函数被执行~")
+    // }
+
+    // var result = foo()
+    // console.log("foo的返回值:", result)
+
+    // 2️⃣我们也可以明确的写上return
+    // 写上return关键字, 但是后面什么内容都没有的时候, 也是返回undefined
+    // function bar() {
+    //   console.log("bar函数被执行~")
+    //   return
+    // }
+    // var result = bar()
+    // console.log("bar的返回值:", result)
+
+    // 注意事项三: 如果在函数执行到return关键字时, 函数会立即停止执行, 退出函数
+    // function baz() {
+    //   console.log("Hello Baz")
+    //   return
+    //   console.log("Hello World")
+    //   console.log("Hello Why")
+    // }
+
+    // baz()
+
+
+    // 函数的具体返回值
+    function sum(num1, num2) {
+      var result = num1 + num2
+      return result
+    }
+
+    var total = sum(20, 30)
+    console.log("total:", total)
+
+
+    // 
+    // 练习二: 传入宽高, 返回面积
+    function getRectangleArea(width, height) {
+      // var area = width * height
+      // return area
+      return width * height
+    }
+
+    var area1 = getRectangleArea(20, 30)
+    var area2 = getRectangleArea(50, 66)
+    console.log("area1:", area1)
+    console.log("area2:", area2)
+
+
+    // 练习三: 传入半径radius, 计算圆形的面积
+    function getCircleArea(radius) {
+      // 圆周率 Math.PI
+      return Math.PI * radius * radius
+    }
+    var area3 = getCircleArea(10)
+    var area4 = getCircleArea(25)
+    console.log("area3:", area3)
+    console.log("area4:", area4)
+
+    // 练习四: 传入一个数字n, 计算1~n的数字和
+    function sumN(n) {
+      // 1.加对n的判断
+      if (n <= 0) {
+        console.log(`您传入的${n}是有问题的`)
+        return
+      }
+
+      // 2.真正对1~n的数字进行计算
+      // 1~n的数字和
+      // 1~5 1 2 3 4 5
+      var total = 0
+      for (var i = 1; i <= n; i++) {
+        total += i
+      }
+      return total
+    }
+
+    var result1 = sumN(5)
+    var result2 = sumN(10)
+    console.log(`result1: ${result1}, result2: ${result2}`)
+
+    var result3 = sumN(-10)
+    console.log("result3:", result3)
+
+    // 数字格式化
+    // 从服务器拿到很多的数字
+    var playCount1 = 13687 // 13687
+    var playCount2 = 5433322 // 543万
+    var playCount3 = 8766633333 // 87亿
+
+
+    // 封装一个工具函数: 对数字进行格式化
+    // 10_0000_0000就是1000000000语法糖 ES6
+    // 语法糖的概念: 一种简写或者特殊的写法, 这种写法相对于原有的写法更加的方便或者阅读性更强
+    // 相比于原来的写法, 有一点点的甜头, 称之为语法糖
+    function formatCount(count) {
+      var result = 0
+      if (count >= 10_0000_0000) { // 超过10_0000_0000值进行转换
+        result = Math.floor(count / 1_0000_0000) + "亿"
+      } else if (count >= 10_0000) {
+        result = Math.floor(count / 1_0000) + "万"
+      } else {
+        result = count
+      }
+
+      return result
+    }
+
+    console.log(formatCount(playCount1))
+    console.log(formatCount(playCount2))
+    console.log(formatCount(playCount3))
+
+
+    // 1.arguments的认识 类数组对象
+    function foo(name, age) {
+      console.log("传入的参数", name, age)
+
+      // 在函数中都存在一个变量, 叫arguments
+      console.log(arguments)
+      // arguments是一个对象
+      console.log(typeof arguments)
+      // 对象内部包含了所有传入的参数
+      // console.log(arguments[0])
+      // console.log(arguments[1])
+      // console.log(arguments[2])
+      // console.log(arguments[3])
+
+      // 对arguments来进行遍历
+      for (var i = 0; i < arguments.length; i++) {
+        console.log(arguments[i])
+      }
+    }
+    foo('张三', 20)
+    // foo("why", 18, 1.88, "广州市")
+
+
+    // 2.arguments的案例
+    // 实参个数不确定
+    function sum() {
+      var total = 0
+      for (var i = 0; i < arguments.length; i++) {
+        var num = arguments[i]
+        total += num
+      }
+      return total
+    }
+
+    console.log(sum(10, 20))
+    console.log(sum(10, 20, 30))
+    console.log(sum(10, 20, 30, 40))
+
+
+    function bar() {
+      console.log("bar函数被执行了~")
+      console.log("----------")
+    }
+
+    // function foo() {
+    //   // 浏览器默认提供给我们的其他函数
+    //   console.log("foo函数执行")
+    //   console.log("Hello World")
+    //   // alert("Hello 张三")
+
+    //   // 调用自己定义的函数
+    //   bar()
+
+    //   // 其他代码
+    //   console.log("other coding")
+    // }
+
+    // foo()
+
+
+
+
+
+
+
+
+  </script>
+
+</body>
+
+</html>
