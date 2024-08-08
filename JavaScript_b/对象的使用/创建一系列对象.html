@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+
+    // 一系列的学生对象
+    // 重复代码的复用: for/函数
+    var stu1 = {
+      name: "lily",
+      age: 18,
+      height: 1.88,
+      running: function () {
+        console.log("running~")
+      }
+    }
+    var stu2 = {
+      name: "mary",
+      age: 30,
+      height: 1.98,
+      running: function () {
+        console.log("running~")
+      }
+    }
+    var stu3 = {
+      name: "lisa",
+      age: 25,
+      height: 2.05,
+      running: function () {
+        console.log("running~")
+      }
+    }
+
+    // 方式2
+    // for循环
+    // for (var i = 0; i < 3; i++) {
+    //   var stu = {
+    //     name: "lily",
+    //     age: 18,
+    //     height: 1.88,
+    //     running: function() {
+
+    //     }
+    //   }
+    // }
+
+
+    var obj1 = {}
+    var obj2 = {}
+
+    // 工厂函数(工厂生产student对象) -> 一种设计模式
+    // 通过工厂设计模式, 自己来定义了一个这样的函数
+    function createStudent(name, age, height) {
+      var stu = {}
+      stu.name = name
+      stu.age = age
+      stu.height = height
+      stu.running = function () {
+        console.log("running~")
+      }
+      return stu
+    }
+
+    var stu1 = createStudent("1", 18, 1.88)
+    var stu2 = createStudent("2", 30, 1.98)
+    var stu3 = createStudent("3", 25, 2.05)
+    console.log(stu1)
+    console.log(stu2)
+    console.log(stu3)
+
+    // 方式3
+    // JavaScript已经默认提供给了我们可以更加符合JavaScript思维方式(面向对象的思维方式)的一种创建对象的规则
+    // 在函数中的this一般指向某一个对象
+    /*
+      如果一个函数被new操作符调用
+        1.创建出来一个新的空对象
+        2.让this指向这个空对象
+        3.执行函数体的代码块
+        4.如果没有明确的返回一个非空对象, 那么this指向的对象会自动返回
+    */
+    function Coder(name, age, height) {
+      this.name = name
+      this.age = age
+      this.height = height
+      this.running = function () {
+        console.log("running~")
+      }
+    }
+
+    // 在函数调用的前面加 new 关键字(操作符)
+    var stu1 = new Coder("why", 18, 1.88)
+    var stu2 = new Coder("kobe", 30, 1.98)
+    console.log(stu1, stu2)
+    // 使用构造函数创建的对象类型为Coder
+
+
+    // 创建一系列的对象
+    // 构造函数的名称: 使用大驼峰
+    function Person() {
+
+    }
+
+    var p1 = new Person()
+    console.log(p1)
+
+    // 平时创建普通的对象
+    // new Object()
+    var obj1 = {}
+    var obj2 = new Object()
+    var obj3 = new Person()
+
+    // 普通函数: 使用小驼峰
+    function sayHello() {
+
+    }
+    // ES6之前使用function声明构造函数
+    // ES6之后使用class声明构造函数
+
+    // 类和对象
+    // React早期使用class封装组件 现在使用function封装组件（函数式组件）
+
+  </script>
+
+</body>
+
+</html>
