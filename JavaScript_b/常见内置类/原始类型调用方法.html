@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+
+    // 原始类型调用方法
+    // 原始类型 在栈内存分配 
+    var name = "Hello World"
+    var height = 1.8888888
+
+    // 包装类型
+    // function String(str) {
+    //   this.str = str
+    //   this.length = 11
+    //   this.split = function() {
+    //   }
+    // }
+
+    // JS中得原始类型就是一个值 为什么可以调用属性或方法
+    // 对原始的数据类型有一个包装类型
+    // 在调用原始类型的属性或者方法时, 内部的操作 name = new String(name)
+    // 原始数据类型 ==> 对象 可以调用  使用结束。JS引擎自动回收内存
+    console.log(name.length)
+    // 以空格切割字符串
+    console.log(name.split(" "))
+    console.log(height.toFixed(2))
+
+    // var obj = {
+    //   name: "kobe",
+    //   running: function() {
+
+    //   }
+    // }
+    // obj.running()
+
+    // 原始类型默认也是可以手动的创建对象(没有必要这样来做)
+    var name1 = new String("Hello World")
+    console.log(typeof name, typeof name1)   // Number/String
+
+    // null和undefined没有包装类型
+
+
+
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+
+    // Number构造函数 -> window.Number
+    // var num = 123 // 本质上new Number(num)
+
+    // 类属性
+    // Number中本身是有自己的属性
+    console.log(Number.MAX_VALUE)
+    console.log(Number.MIN_VALUE)
+    // integer: 整数
+    console.log(Number.MAX_SAFE_INTEGER)
+    console.log(Number.MIN_SAFE_INTEGER)
+
+    // 对象的方法
+    // toString(base) 数字转换成字符串类型 base是进制类型
+    var num = 1000
+    console.log(num.toString(), typeof num.toString())
+    //转换成二进制 先转换成字符串
+    console.log(num.toString(2))
+    console.log(num.toString(8))
+    console.log(num.toString(16))
+
+    // console.log(123..toString(2))
+
+    // toFixed的使用(重要) 
+    // 格式化数字 保留对应的小数位 四舍五入
+    // toFixed返回一个字符串
+    var pi = 3.1415926
+    console.log(pi.toFixed(3))
+
+    // 类的方法
+    // parseInt
+    // parseFloat
+    // 整数: 123
+    // 浮点数: 小数 123.321
+    var num1 = "123.521"
+    console.log('parseInt-------------')
+    console.log(Number(num1).toFixed(0))
+    console.log(Number.parseInt(num1))
+    console.log(Number.parseFloat(num1))
+    // Number. 使用Number构造函数中的方法
+    // window对象上面
+    console.log(parseInt(num1))
+    console.log(parseFloat(num1))
+
+    // function HYNumber() {
+    // }
+    // HYNumber.parseInt2 = function() {
+    // }
+    // window.parseInt2 = HYNumber.parseInt2
+    // console.log(window.parseInt2 === HYNumber.parseInt2)
+    // 本质上是同一个方法
+    console.log(parseInt === Number.parseInt)
+
+    // Math对象 是一个对象不是构造器
+    // console.log(typeof Number) // function
+    // var num = new Number()
+
+    // Math -> 对象
+    // window/obj/console
+    // console.log(typeof Math)
+    // var math = new Math()
+
+    // Math对象的属性
+    // console.log(Math.PI)
+
+    // Math对象的方法
+    // var num = 3.55
+    // console.log(Math.floor(num)) // 向下取整 3
+    // console.log(Math.ceil(num)) // 4 向上取整
+    // console.log(Math.round(num)) // 4 四舍五入
+
+    // 另外方法
+    // random: 随机生成 [0, 1)
+    console.log(Math.random())
+    // 需求: [5~50)的随机数
+    // [a, b)
+    // y = a
+    // x = b - a
+    // Math.floor(Math.random() * x) + y
+    for (var i = 0; i < 1000; i++) {
+      var randomNum = Math.floor(Math.random() * 45) + 5
+      console.log(randomNum)
+    }
+
+    // Math.pow(x, y) 次方
+    console.log(Math.pow(2, 4))
+
+
+
+    // String类型
+    var message = "Hello World"
+    // 1.属性: length
+    console.log(message.length)
+
+    // 2.访问字符串中某个位置的字符 []
+    // console.log(message[4])
+    // console.log(message.charAt(4))
+    // console.log(message[20])
+    // console.log(message.charAt(20))
+
+    // 3.字符串的遍历
+    // for普通遍历 通过索引获取
+    for (var i = 0; i < message.length; i++) {
+      console.log(message[i])
+    }
+
+    // for..of的遍历 -> 迭代器
+    // 目前可迭代对象: 字符串/数组
+    // 对象是不支持for..of (可迭代的对象支持 字符串 数组)
+    // String对象内部是将字符串变成了一个可迭代对象
+    for (var char of message) {
+      console.log(char)
+    }
+
+    // String修改字符串
+    var message = "Hello World"
+
+    // 1.严格的修改字符串, 之前的字符串内部修改掉
+    // message[2] = "a"
+    // console.log(message)
+    // 修改失败 字符串是不可变类型
+
+    // String两个方法:(重要)
+    // toUpperCase: 将所有的字符变成大写
+    // toLowerCase: 将所有的字符变成小写
+    // 不改变源字符串 生成一个新的字符串
+    // var message1 = message.toUpperCase()
+    // console.log(message)
+    // console.log("message1:", message1)
+    // message = message.toUpperCase()
+
+    var message2 = message.toLowerCase()
+    console.log(message2)
+
+    // String查找字符串
+    var message = "my name is Lily."
+    var name = "Lily"
+
+    // 判断一个字符串中是否有另外一个字符串
+    // 1.indexOf(searchString, fromIndex)
+    /*
+      index:
+        情况一: 搜索到, 搜索字符串所在索引位置
+        情况二: 没有搜索到, 返回-1
+    */
+    //  var index = message.indexOf(name)
+    //  if (message.indexOf(name) !== -1) {
+    //    console.log("message中包含name")
+    //  } else {
+    //    console.log("message不包含name")
+    //  }
+
+    // 2.includes: ES6中新增一个方法, 就是用来判断包含关系
+    // 返回一个boolean值
+    // if (message.includes(name)) {
+    //   console.log("message中包含name")
+    // }
+
+    // 3.startsWith: 是否以xxx开头
+    // if (message.startsWith("my")) {
+    //   console.log("message以my开头")
+    // }
+
+    // 4.endsWith: 是否以xxx结束
+    // if (message.endsWith("Lily")) {
+    //   console.log("message以Lily结尾")
+    // }
+
+    // 5.replace 替换字符串
+    // var newMessage = message.replace("Lily", "kobe")
+    // console.log(message)
+    // console.log(newMessage)
+    var newName = "kobe"
+    var newMessage = message.replace("Lily", function () {
+      return newName.toUpperCase()
+    })
+    console.log(newMessage)
+
+    // 子字符串
+    var message = "Hello World"
+
+    // 获取子字符串
+    // slice(start,end)
+    // 允许写负值 -1表示从后向前第二个
+    // console.log('slice-------------')
+    // console.log(message.slice(3, 7))
+    // console.log(message.slice(3, -1))
+    // console.log(message.slice(3))
+
+    // substr(start,num)
+    // console.log(message.substr(3, 7))
+
+    // String拼接
+    var str1 = "Hello"
+    var str2 = "World"
+    var str3 = "kobe"
+
+    // 1.字符串拼接
+    // +
+    // var newString = str1 + str2 + str3
+    // console.log(newString)
+    // concat方法: 链式调用 追加
+    var newString2 = str1.concat(str2).concat(str3)
+    // 可以传多个参数
+    var newString3 = str1.concat(str2, str3, "abc", "cba")
+    console.log(newString2)
+    console.log(newString3)
+
+    // 2.删除首尾的空格
+    console.log("    Lily      abc   ".trim())
+
+    // 3.字符串切割split
+    var message = "abc-cba-nba-mba"
+    var items = message.split("-")
+    console.log('items', items) //array
+    var newMessage = items.join("*")
+    console.log(newMessage)
+
+
+  </script>
+
+</body>
+
+</html>
