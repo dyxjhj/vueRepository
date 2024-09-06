@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+  <script>
+    // 创建Date对象的方式
+    // 1.没有传入任何的参数, 获取到当前时间
+    var date1 = new Date()
+    console.log(date1)
+
+    // 2.传入参数: 时间字符串
+    var date2 = new Date("2022-08-08")
+    console.log(date2)
+
+    // 3.传入具体的年月日时分秒 毫秒
+    var date3 = new Date(2033, 10, 10, 9, 8, 7, 333)
+    console.log(date3)
+
+    // 4.传入一个Unix时间戳
+    // 1s -> 1000ms
+    var date4 = new Date(10004343433)
+    console.log('时间戳', date4)
+
+    // var date = new Date()
+    // 时间的两种表示标准 ISO8601
+    // console.log('data----------', date)
+    // console.log('date.toDateString()', date.toDateString())
+    // console.log('date.toISOString()', date.toISOString())
+
+    var date = new Date()
+
+    console.log(date)
+    console.log(date.toISOString())
+
+    // 1.获取想要的时间信息
+    var year = date.getFullYear()
+    var month = date.getMonth() + 1
+    var day = date.getDate()
+    var hour = date.getHours()
+    var minute = date.getMinutes()
+    var second = date.getSeconds()
+    console.log(year, month, day, hour, minute, second)
+    console.log(`${year}/${month}/${day} ${hour}:${minute}:${second}`)
+
+    var weekday = date.getDay() // 一周中的第几天
+    console.log('weekday', weekday)
+
+
+    // 2.也可以给date设置时间(了解)
+    date.setFullYear(2033)
+    // 自动校验
+    date.setDate(32)
+    console.log(date)
+
+    // var date = new Date(1132324234242)
+    // console.log(date)
+
+    // Date对象, 转成时间戳
+    var date = new Date()
+    var date2 = new Date("2033-03-03")
+
+    // 方法一: 类方法now可以获取当前时间的时间戳
+    var timestamp1 = Date.now()
+    console.log(timestamp1)
+
+    // 方法二/三将一个date对象转成时间戳
+    var timestamp2 = date.getTime()
+    var timestamp3 = date2.valueOf()
+    console.log(timestamp2, timestamp3)
+
+    // 方法四: 了解
+    console.log(+date)
+
+
+    // 计算这个操作所花费的时间
+    // var startTime = Date.now()
+    // for (var i = 0; i < 100000; i++) {
+    //   console.log(i)
+    // }
+    // var endTime = Date.now()
+    // console.log("执行100000次for循环的打印所消耗的时间:", endTime - startTime)
+
+
+    // 封装一个简单函数
+    function testPerformance(fn) {
+      var startTime = Date.now()
+      fn()
+      var endTime = Date.now()
+    }
+
+    var timeString = '2024-09-02T02:44:24.433Z'
+    // 1.方式一:
+    var date = new Date(timeString)
+    var timestamp = date.getTime()
+
+    // 2.方式二: ISO形式的字符串
+    var timestamp = Date.parse(timeString)
+    console.log('11', timestamp)
+
+
+  </script>
+
+</body>
+
+</html>

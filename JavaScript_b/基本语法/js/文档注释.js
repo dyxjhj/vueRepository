@@ -8,4 +8,4 @@ function sayHello(name, age) {
 }
 
 
-sayHello("why", 18)
+sayHello("Lily", 18)

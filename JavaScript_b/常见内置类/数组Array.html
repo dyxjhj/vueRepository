@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+
+    // 对象 键值对方式存储
+    // 1.创建数组的方式
+    var names = ["Lily", "kobe", "james", "curry"]
+
+    var product1 = { name: "苹果", price: 10 }
+    // 对象数组
+    var products = [
+      { name: "鼠标", price: 98 },
+      { name: "键盘", price: 100 },
+      { name: "西瓜", price: 20 },
+      product1
+    ]
+
+    // 2.创建方式二: 类Array
+    var arr1 = new Array()
+    var arr2 = new Array("abc", "cba", "nba") // ["abc", "cba", "nba"]
+    console.log(arr1, arr2)
+
+    // 传入了一个数字, 它默认会当成我们要创建一个对应长度的数组
+    var arr3 = new Array(5) // [empty*5]
+    console.log(arr3, arr3[0])
+    var arr4 = [5]
+
+    // 3.通过索引访问元素
+    console.log(names[0]) // 第一个元素
+    console.log(names[names.length - 1]) // 最后一个元素
+
+    // 对于某一个结构的操作: 增删改查(数据库)
+
+    var names = ["abc", "cba", "nba"]
+
+    // 1.访问数组中的元素
+    console.log(names[0])
+    console.log(names.at(0))
+
+    console.log(names[-1]) //undefined
+    console.log(names.at(-1)) //从后向前
+
+    // 2.修改数组中的元素
+    // names[0] = "Lily"
+    // console.log(names)
+
+    // 3.新增数组中的元素(了解)
+    // names[3] = "kobe"
+    // names[10] = "james"
+    // console.log(names)
+
+    // 4.删除数组中的元素(了解)
+    // delete names[1]
+    // console.log(names)
+    // console.log(names[1])
+
+    // var names = ["abc", "cba", "nba", "mba", "abcd"]
+
+    // 1.在数组的尾部添加和删除元素
+    // // push方法
+    // names.push("Lily", "kobe")
+    // console.log(names)
+    // // pop方法
+    // names.pop()
+    // names.pop()
+    // console.log(names)
+
+    // // 2.在数组的头部添加和删除元素
+    // // unshift方法
+    // names.unshift("Lily", "kobe")
+    // console.log(names)
+    // // shift方法
+    // names.shift()
+    // console.log(names)
+
+    // 尾插尾删的效率比头插头删的效率高
+
+    // 3. 在任意位置添加/删除/替换元素
+    var names = ["abc", "cba", "nba", "mba", "abcd"]
+    // 参数一: start, 从什么位置开始操作元素
+    // 参数二: deleteCount, 删除元素的个数
+
+    // splice修改数组本身
+    // 3.1.删除元素
+    // names.splice(1, 2)
+    // console.log(names)  ["abc", "mba", "abcd"]
+
+    // 3.2.新增元素
+    // deleteCount: 0, 后面可以添加新的元素
+    // names.splice(1, 0, "Lily", "kobe")
+    // console.log(names) ["abc", "Lily", "kobe", "cba", "nba", "mba", "abcd"]
+
+    // 3.3.替换元素
+    // names.splice(1, 2, "Lily", "kobe", "james")
+    // console.log(names) ["abc","Lily", "kobe", "james", "mba", "abcd"]
+
+    var names = ["abc", "cba", "nba", "mba"]
+
+    // 1.属性length
+    // 获取数组的长度length
+    // console.log(names.length) // 4
+
+    // // length属性可写的(扩容)
+    names.length = 10
+    console.log(names) //['abc', 'cba', 'nba', 'mba', empty × 6]
+
+    // // 设置的length小于原来的元素个数
+    names.length = 0
+    console.log(names) //[]
+
+    // 2.数组的遍历
+    // 2.1. 普通的for循环
+    for (var i = 0; i < names.length; i++) {
+      console.log(names[i])
+    }
+
+    // 2.2. for..in 索引遍历
+    for (var index in names) {
+      console.log(index, names[index])
+    }
+
+    // 2.3. for..of 项遍历
+    for (var item of names) {
+      console.log(item)
+    }
+
+    // var names = ["abc", "cba", "nba", "mba", "Lily", "kobe"]
+
+    // 1.slice方法: 不会修改原数组
+    // splice有区别: splice修改原有的数组
+    // start 从什么位置开始
+    // end 结束位置, 不包含end本身
+    // var newNames = names.slice(2, 4)
+    // console.log(newNames)
+
+    // 2.concat方法: 将多个数组拼接在一起
+    // console.log('concat-------------')
+    // var names1 = ["abc", "cba"]
+    // var names2 = ["nba", "mba"]
+    // var names3 = ["Lily", "kobe"]
+    // var newNames2 = names1.concat(names2, names3)
+    // console.log(newNames2)
+
+    // 3.join方法: 字符串split
+    // 数组拼接
+    // console.log(names.join("-"))
+
+    /*
+      indexOf方式.
+      手动for循环
+      数组的find方法
+    */
+
+    // 1.数组中存放的是原始类型
+    var names = ["abc", "cba", "nba", "mba"]
+
+    // 1.1. indexOf
+    // 可以找到, 返回对应的索引
+    // 没有找到, 返回-1
+    // console.log(names.indexOf("nbb"))
+
+
+    // 2.数组中存放的是对象类型
+    // var students = [
+    //   { id: 100, name: "Lily", age: 18 },
+    //   { id: 101, name: "kobe", age: 30 },
+    //   { id: 102, name: "james", age: 25 },
+    //   { id: 103, name: "Lily", age: 22 }
+    // ]
+
+    // 查找的是id为101的学生信息
+    // 2.1. 自己写一个for循环
+    // var stu = null
+    // for (var i = 0; i < students.length; i++) {
+    //   if (students[i].id === 101) {
+    //     stu = students[i]
+    //     break
+    //   }
+    // }
+
+    // // 判断上面的算法有没有找到对应的学生
+    // if (stu) {
+    //   console.log("找到了对应的101学生", stu)
+    // } else {
+    //   console.log("没有找到对应的101学生")
+    // }
+
+    // 高阶函数 函数本身接受另一个函数作为参数
+    // 2.2. find方法: 高阶函数
+    var students = [
+      { id: 100, name: "Lily", age: 18 },
+      { id: 101, name: "kobe", age: 30 },
+      { id: 102, name: "james", age: 25 },
+      { id: 103, name: "Lily", age: 22 }
+    ]
+
+    var stu = students.find(function (item) {
+      if (item.id === 101) return true
+    })
+    console.log(stu)
+
+    var names = ["abc", "cba", "nba"]
+
+    // forEach函数: 可以帮助我遍历数组
+    // for (var i = 0; i < names.length; i++) {
+    //   console.log(names[i])
+    // }
+
+    // 手动实现高阶函数
+    // 1.hyForEach版本一 函数回调callBack
+    function hyForEach(fn) {
+      for (var i = 0; i < names.length; i++) {
+        fn(names[i], i, names)
+      }
+    }
+
+    hyForEach(function (item, index, names) {
+      console.log("-------", item, index, names)
+    })
+
+    // 2.hyForEach版本二
+    // function hyForEach(fn, arr) {
+    //   for (var i = 0; i < arr.length; i++) {
+    //     fn(arr[i], i, arr)
+    //   }
+    // }
+
+    // hyForEach(function(item, index, names) {
+    //   console.log("-------", item, index, names)
+    // }, names)
+
+    // hyForEach(function(item, index, names) {
+    //   console.log("-------", item, index, names)
+    // }, [123, 321, 111, 222])
+
+
+    // 3.hyForEach版本三
+    // names.hyForEach = function(fn) {
+    //   for (var i = 0; i < this.length; i++) {
+    //     fn(this[i], i, this)
+    //   }
+    // }
+
+    // names.hyForEach(function(item, index, names) {
+    //   console.log("-------", item, index, names)
+    // })
+
+    // names.forEach(function(item, index, names) {
+    //   console.log("-------", item, index, names)
+    // })
+
+
+    // 4.hyForEach版本四(了解)
+    Array.prototype.hyForEach = function (fn, thisArgs) {
+      for (var i = 0; i < this.length; i++) {
+        fn(this[i], i, this)
+      }
+    }
+
+    // names.hyForEach(function(item, index, names) {
+    //   console.log("------", item, index, names)
+    // })
+
+    // var students = [
+    //   { id: 100, name: "Lily", age: 18 },
+    //   { id: 101, name: "kobe", age: 30 },
+    //   { id: 102, name: "james", age: 25 },
+    //   { id: 103, name: "Lily", age: 22 }
+    // ]
+
+    // students.hyForEach(function(item, index, stus) {
+    //   console.log("++++++", item, index, stus)
+    // })
+
+
+    // 1.原始类型的查找
+    var names = ["abc", "cba", "nba", "mba"]
+
+    // 原生find方法 找到满足条件的值后返回item
+    var findName = names.find(function (item, index, arr) {
+      console.log(item, index, arr)
+      return item === "nba"
+    })
+    console.log('findName', findName)
+
+    // 2.数组中对象类型的查找
+    var students = [
+      { id: 100, name: "Lily", age: 18 },
+      { id: 101, name: "kobe", age: 30 },
+      { id: 102, name: "james", age: 25 },
+      { id: 103, name: "Lily", age: 22 }
+    ]
+
+    // var findStu = students.find(function(item) {
+    //   return item.id === 101
+    // })
+    // console.log(findStu)
+
+    // 3.自己实现hyFind
+    Array.prototype.hyFind = function (fn) {
+      // var item = undefined
+      for (var i = 0; i < this.length; i++) {
+        var isFlag = fn(this[i], i, this)
+        if (isFlag) {
+          // item = this[i]
+          // break
+          return this[i]
+        }
+      }
+      // return item
+    }
+
+    var findStu = students.hyFind(function (item, index, arr) {
+      console.log(item)
+      return item.id === 101
+    })
+    console.log(findStu)
+
+    var names = ["abc", "cba", "nba"]
+
+    // indexOf/lastIndexOf
+    // find: 查找元素
+
+    // includes
+    // console.log(names.includes("nba"))
+
+    // findIndex: 查找元素的索引
+    var findIndex = names.findIndex(function (item, index, arr) {
+      return item === "nba"
+    })
+    // var findIndex = names.findIndex(item => item === "nba")
+    console.log(findIndex)
+
+    // var nums = [20, 4, 10, 15, 100, 88]
+
+    // // sort: 排序
+    // nums.sort(function(item1, item2) {
+    //   // item1和item2进行比较
+    //   // 返回是 整数
+    //   // 谁小谁在前
+    //   // return item1 - item2
+    //   return item2 - item1
+    // })
+
+    // console.log(nums)
+    // console.log(nums.reverse())
+
+
+    // 复杂类型的排序
+    var students = [
+      { id: 100, name: "Lily", age: 18 },
+      { id: 101, name: "kobe", age: 30 },
+      { id: 102, name: "james", age: 25 },
+      { id: 103, name: "curry", age: 22 }
+    ]
+
+    students.sort(function (item1, item2) {
+      return item1.age - item2.age
+    })
+    console.log(students)
+
+
+    // 1.forEach函数
+    var names = ["abc", "cba", "nba", "mba"]
+
+    // 三种方式, 新增一种方式
+    names.forEach(function (item) {
+      console.log(item, this)
+    }, { name: "Lily" })
+
+    // 2.filter函数: 过滤
+    // var nums = [11, 20, 55, 100, 88, 32]
+    // 2.1. for循环实现
+    // var newNums = []
+    // for (var item of nums) {
+    //   if (item % 2 === 0) {
+    //     newNums.push(item)
+    //   }
+    // }
+    // 2.2. filter实现
+    // var newNums = nums.filter(function(item) {
+    //   return item % 2 === 0
+    // })
+    // console.log(newNums)
+
+
+    // 3.map函数: 映射
+    // var nums = [11, 20, 55, 100, 88, 32]
+    // var newNums = nums.map(function(item) {
+    //   return item * item
+    // })
+    // console.log(newNums)
+
+    // 4.reduce
+    // var nums = [11, 20, 55, 100, 88, 32]
+    // var result = 0
+    // for (var item of nums) {
+    //   result += item
+    // }
+    // console.log(result)
+    // 第一次执行: preValue->0 item->11
+    // 第二次执行: preValue->11 item->20
+    // 第三次执行: preValue->31 item->55
+    // 第四次执行: preValue->86 item->100
+    // 第五次执行: preValue->186 item->88
+    // 第六次执行: preValue->274 item->32
+    // 最后一次执行的时候 preValue + item, 它会作为reduce的返回值
+
+    // initialValue: 初始化值, 第一次执行的时候, 对应的preValue
+    // 如果initialValue没有传呢?
+    // var result = nums.reduce(function(preValue, item) {
+    //   console.log(`preValue:${preValue} item:${item}`)
+    //   return preValue + item
+    // }, 0)
+    // console.log(result)
+
+    // reduce练习
+    // var products = [
+    //   { name: "鼠标", price: 88, count: 3 },
+    //   { name: "键盘", price: 200, count: 2 },
+    //   { name: "耳机", price: 9.9, count: 10 },
+    // ]
+    // var totalPrice = products.reduce(function(preValue, item) {
+    //   return preValue + item.price * item.count
+    // }, 0)
+    // console.log(totalPrice)
+
+
+    // 综合练习: 
+    var nums = [11, 20, 55, 100, 88, 32]
+
+    // 过滤所有的偶数, 映射所有偶数的平方, 并且计算他们的和
+    // var total = nums.filter(function(item) {
+    //   return item % 2 === 0
+    // }).map(function(item) {
+    //   return item * item
+    // }).reduce(function(preValue, item) {
+    //   return preValue + item
+    // }, 0)
+    // console.log(total)
+
+    // var total = nums.filter(item => item % 2 === 0)
+    //                 .map(item => item * item)
+    //                 .reduce((preValue, item) => preValue + item, 0)
+    // console.log(total)    
+
+
+  </script>
+
+</body>
+
+</html>

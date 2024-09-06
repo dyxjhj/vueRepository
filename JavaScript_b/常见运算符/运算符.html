@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+    // 算数运算符
+    // + - * /
+    var num1 = 5
+    var num2 = 8
+    var result1 = num1 * num2
+    console.log(result1)
+
+    // %: 取余操作
+    var num = 20
+    var result2 = num % 8
+    console.log(result2)
+
+    // **: 2**3 2的三次方 ES7语法
+    console.log(2 ** 4)
+    console.log(Math.pow(2, 4))
+
+    // =赋值运算符
+    var num = 123
+
+    // 链式赋值 chain(不推荐)
+    var num1 = num2 = num3 = 321
+    console.log(num1, num2, num3)
+
+    // 原地修改  
+    var num = 100
+    // num = num + 10
+    num += 10
+    // num = num * 10
+    num *= 10
+    num **= 2
+    console.log(num)
+
+    // 自增和自减
+    var currentIndex = 5
+
+    // 方法一:
+    // currentIndex = currentIndex + 1
+
+    // // 方法二:
+    // currentIndex += 1
+
+    // 方法三: 自增
+    currentIndex++
+    console.log(currentIndex)
+
+    // 自减
+    // currentIndex -= 1
+    currentIndex--
+    console.log(currentIndex)
+
+    var currentIndex = 5
+    // 自己自增或者自减是没有区别
+    // ++currentIndex
+    // console.log(currentIndex)
+    // --currentIndex
+    // console.log(currentIndex)
+
+    // 自增和自减表达式本身又在其他的表达式中, 那就有区别
+    // var result1 = 100 + currentIndex++
+    // console.log(currentIndex)  //6
+    // console.log("result1:" + result1)  //105
+
+    var result2 = 100 + ++currentIndex
+    console.log(currentIndex) //6
+    console.log("result2:" + result2) // 106
+
+    // 优先级
+    var num = 5
+    var result = 2 + 3 * ++num
+    console.log(result)
+
+
+    // 比较运算符
+    // var book = {
+    //   price: {
+    //     newPrice: 222,
+    //     oldPrice: 188
+    //   }
+    // }
+
+    var num1 = 20
+    var num2 = 30
+
+    // 1.比较运算符
+    var isResult = num1 > num2
+    console.log(isResult)
+
+    // 2.==判断
+    console.log(num1 == num2) // false
+    console.log(num1 != num2) // true
+
+    // 需求: 获取到比较大的那个值
+    // var result = 0
+    // if (num1 > num2) {
+    //   result = num1
+    // } else {
+    //   result = num2
+    // }
+
+    // == 和 ===
+    var foo1 = 0
+    var foo2 = ""
+
+    // ==运算符, 在类型不相同的情况下, 会将运算元先转成Number的值, 再进行比较(隐式转换)
+    // null比较特殊: null在进行比较的时候, 应该是会被当成一个对象和原生类型进行比较的
+    console.log(Number(foo1))
+    console.log(Number(foo2))
+    console.log(foo1 == foo2) //true 
+
+    // ===运算符, 在类型不相同的情况, 直接返回false
+    console.log(foo1 === foo2)
+
+    // 特殊情况 null被比较时会被当成一个对象和原始类型进行比较
+
+
+    // 逻辑运算符
+    var chineseScore = 88
+    var mathScore = 99
+
+    // 1.逻辑与: &&, 并且
+    // 条件1 && 条件2 && 条件3.....
+    // 所有的条件都为true的时候, 最终结果才为true
+    // 案例: 小明语文考试90分以上, 并且数学考试90分以上, 才能去游乐场
+    if (chineseScore > 90 && mathScore > 90) {
+      console.log("去游乐场玩~")
+    }
+
+    // 2.逻辑或: ||, 或者
+    // 条件1 || 条件2 || 条件3....
+    // 只要有一个条件为true, 最终结果就为true
+    // 案例: 如果有一门成绩大于90, 那么可以打1小时游戏
+    if (chineseScore > 90 || mathScore > 90) {
+      console.log("打1个小时游戏~")
+    }
+
+    // 3.逻辑非: !, 取反
+    var isLogin = true
+    if (!isLogin) {
+      console.log("跳转到登录页面")
+      console.log("进行登录~")
+    }
+
+    console.log("正常的访问页面")
+
+    // 逻辑或
+    // 脱离分支语句, 单独使用逻辑或
+    // 短路或 从左往右依次计算运算元
+    /*
+      1.先将运算元转成Boolean类型
+      2.对转成的boolean类型进行判断
+        * 如果为true, 直接将结果(原始值，不是boolean值)返回
+        * 如果为false, 进行第二个运算元的判断
+        * 以此类推
+      3.如果找到最后, 也没有找到, 那么返回最后一个运算元
+    */
+    // var name = "Lily"
+    // name || 运算元2 || 运算元3
+
+
+    // 本质推导一: 之前的多条件是如何进行判断的
+    var chineseScore = 95
+    var mathScore = 99
+    // chineseScore > 90为true, 那么后续的条件都不会进行判断
+    if (chineseScore > 90 || mathScore > 90) { }
+
+    // 本质推导二: 获取第一个有值的结果
+    var info = "abc"
+    var obj = { name: "Lily" }
+    var message = info || obj || "我是默认值"
+    console.log(message.length)
+
+
+    // 运算元1 && 运算元2 && 运算元3
+    /*
+      也可以脱离条件判断来使用
+      逻辑与的本质
+       1.拿到第一个运算元, 将运算元转成Boolean类型
+       2.对运算元的Boolean类型进行判断
+         * 如果false, 返回运算元(原始值)
+         * 如果true, 查找下一个继续来运算
+         * 以此类推
+       3.如果查找了所有的都为true, 那么返回最后一个运算元(原始值)
+    */
+
+    // 本质推导一: 逻辑与, 称之为短路与
+    var chineseScore = 80
+    var mathScore = 99
+    if (chineseScore > 90 && mathScore > 90) { }
+
+    // 本质推导二: 对一些对象中的方法进行有值判断
+    var obj = {
+      name: "Lily",
+      friend: {
+        name: "kobe",
+        eating: function () {
+          console.log("eat something")
+        }
+      }
+    }
+
+    // 调用eating函数
+    // obj.friend.eating()
+    obj && obj.friend && obj.friend.eating && obj.friend.eating()
+
+
+    // 逻辑非 布尔类型转换 !message 会将message转换成boolean类型  message=>true  
+    var message = "Hello World"
+    console.log(Boolean(message))
+    console.log('!!message', !!message) //true
+
+
+  </script>
+
+</body>
+
+</html>

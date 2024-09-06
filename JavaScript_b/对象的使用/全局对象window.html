@@ -35,13 +35,14 @@
       console.log(document)
 
       // window.message
+      // 直接找window 再在window中找message
       console.log(window.message)
     }
     foo()
 
     // 函数也是对象
     // 定义原始类型的变量
-    var name = "why"
+    var name = "Lily"
     var age = 18
 
     // 定义对象类型的变量
@@ -51,7 +52,7 @@
     function bar() { } // 堆内存
 
     console.log(typeof obj) // object
-    console.log(typeof foo) // function -> object
+    console.log(typeof foo) // function -> object function extends object
 
     // var stu = new Student() // stu是一个Student -> Person
 
